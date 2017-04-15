@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1">
+
+    <ScrollView
+        android:id="@+id/scroll"
+        style="@android:style/Widget.Material.ScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="392dp"
+        android:clipToPadding="false"
+        android:fillViewport="true"
+        android:scrollbarStyle="insideOverlay"
+        android:visibility="visible"
+        tools:targetApi="lollipop">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView13"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif"
+                android:text="@string/boards"
+                android:textSize="24sp" />
+
+            <CheckBox
+                android:id="@+id/BOARDI"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif"
+                android:text="@string/board_i" />
+
+            <CheckBox
+                android:id="@+id/BOARDIA"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/board_ia" />
+
+            <CheckBox
+                android:id="@+id/BOARDIC"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif"
+                android:text="@string/board_ic" />
+
+            <CheckBox
+                android:id="@+id/BOARDII"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/board_ii" />
+
+            <CheckBox
+                android:id="@+id/BOARDIIA"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/board_iia" />
+
+            <CheckBox
+                android:id="@+id/BOARDIIB"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="serif"
+                android:text="@string/board_iib" />
+
+            <CheckBox
+                android:id="@+id/BOARDIIC"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="monospace"
+                android:text="@string/board_iic" />
+
+            <CheckBox
+                android:id="@+id/BOARDIII"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="monospace"
+                android:text="@string/board_iii" />
+
+            <CheckBox
+                android:id="@+id/BOARDIIIA"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="monospace"
+                android:text="@string/board_iiia" />
+
+            <CheckBox
+                android:id="@+id/BOARDIIIB"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="monospace"
+                android:text="@string/board_iiib" />
+
+            <CheckBox
+                android:id="@+id/BOARDIIIC"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="monospace"
+                android:text="@string/board_iiic" />
+
+            <CheckBox
+                android:id="@+id/BOARDIV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="monospace"
+                android:text="@string/board_iv" />
+
+            <CheckBox
+                android:id="@+id/BOARDIVC"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="monospace"
+                android:text="@string/board_ivc" />
+
+            <TextView
+                android:id="@+id/textView11"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="monospace"
+                android:text="@string/extras"
+                android:textSize="24sp" />
+
+            <CheckBox
+                android:id="@+id/RRP"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="monospace"
+                android:text="@string/rough_roads" />
+
+            <CheckBox
+                android:id="@+id/EMP"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/evil_machinations" />
+
+            <CheckBox
+                android:id="@+id/TBEP"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/the_big_expansion_tiles_and_cards" />
+
+            <CheckBox
+                android:id="@+id/ABEP"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/another_big_expansion_tiles_and_cards" />
+
+            <CheckBox
+                android:id="@+id/STP"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/support_team" />
+
+            <CheckBox
+                android:id="@+id/MP"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/missions2" />
+        </LinearLayout>
+    </ScrollView>
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif"
+        android:text="@string/preference"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        tools:targetApi="jelly_bean" />
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/close"
+            android:textAlignment="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.502"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </android.support.constraint.ConstraintLayout>
+
+</LinearLayout>
