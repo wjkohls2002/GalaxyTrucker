@@ -3,7 +3,6 @@ package com.example.toast.galaxy;
 //     IMPORTS
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
@@ -67,14 +66,6 @@ public class MainActivity extends AppCompatActivity {
 
         settings = (ImageButton) findViewById(R.id.Settings);
         Button randize = (Button) findViewById(R.id.Randomize);
-        Typeface getFace = Typeface.createFromAsset(getAssets(),"fonts2/Orbitron-Regular.ttf");
-        randize.setTypeface(getFace);
-        TextView label = (TextView) findViewById(R.id.label);
-        label.setTypeface(getFace);
-        TextView text1 = (TextView) findViewById(R.id.roundsText);
-        TextView text2 = (TextView) findViewById(R.id.extrastext);
-        text1.setTypeface(getFace);
-        text2.setTypeface(getFace);
 
         //Listeners
         listenForSlider lfs = new listenForSlider();
@@ -136,17 +127,6 @@ public class MainActivity extends AppCompatActivity {
             CheckBox RR = (CheckBox) findViewById(R.id.RR);
             CheckBox smartS = (CheckBox) findViewById(R.id.Smart);
 
-
-            Typeface getFace = Typeface.createFromAsset(getAssets(),"fonts2/Orbitron-Regular.ttf");
-            baseSet.setTypeface(getFace);
-            bigE.setTypeface(getFace);
-            aBigE.setTypeface(getFace);
-            latestModel.setTypeface(getFace);
-            missions.setTypeface(getFace);
-            crew.setTypeface(getFace);
-            RR.setTypeface(getFace);
-            smartS.setTypeface(getFace);
-
             SharedPreferences preferences = getApplicationContext().getSharedPreferences("Trucker", android.content.Context.MODE_PRIVATE);
             BSV = preferences.getBoolean("BSV", false);
             TBEV = preferences.getBoolean("TBEV", false);
@@ -171,23 +151,9 @@ public class MainActivity extends AppCompatActivity {
             Close2 = (Button) findViewById(R.id.Close);
             listenForButton lfb3 = new listenForButton();
             Close2.setOnClickListener(lfb3);
-            Close2.setTypeface(getFace);
             Button Help = (Button) findViewById(R.id.HELP);
             listenForACryOfHelp lfacoh = new listenForACryOfHelp();
             Help.setOnClickListener(lfacoh);
-            Help.setTypeface(getFace);
-
-            TextView Thello = (TextView) findViewById(R.id.textViewHello);
-            Thello.setTypeface(getFace);
-            TextView Thello2 = (TextView) findViewById(R.id.textViewhello2);
-            Thello2.setTypeface(getFace);
-            TextView Thello3 = (TextView) findViewById(R.id.textViewHello3);
-            Thello3.setTypeface(getFace);
-
-
-            
-
-
         }
     }
     private class listenForSlider implements SeekBar.OnSeekBarChangeListener{
@@ -197,7 +163,8 @@ public class MainActivity extends AppCompatActivity {
             if (seekBar == rounds)
             {
                 TextView roundstext = (TextView)  findViewById(R.id.roundsText);
-                roundstext.setText("Rounds: "+rounds.getProgress()) ;
+                String print =  "Rounds: "+rounds.getProgress();
+                roundstext.setText(print);
                 numOfRounds = rounds.getProgress();
                 SharedPreferences preferences = getApplicationContext().getSharedPreferences("Trucker", android.content.Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = preferences.edit();
@@ -207,7 +174,8 @@ public class MainActivity extends AppCompatActivity {
             }else if (seekBar == extras)
             {
                 TextView extraText = (TextView) findViewById(R.id.extrastext);
-                extraText.setText("Extras: "+extras.getProgress());
+                String print = "Extras: "+extras.getProgress();
+                extraText.setText(print);
                 extraCount = extras.getProgress();
                 SharedPreferences preferences = getApplicationContext().getSharedPreferences("Trucker", android.content.Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = preferences.edit();
@@ -303,41 +271,38 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onClick(View v)
         {
-            if(v.getId() == R.id.again)
-            {
-
-            }else if (v.getId() == R.id.restart)
+            if (v.getId() == R.id.restart)
             {
                 setContentView(R.layout.activity_main);
                 main();
-            }else{}
+            }
         }
     }
     public void randomBoards() {
 
         //  Components
         setContentView(R.layout.radomized);
-        Typeface getFace = Typeface.createFromAsset(getAssets(),"fonts2/Orbitron-Regular.ttf");
         restart = (Button) findViewById(R.id.restart);
-        restart.setTypeface(getFace);
         randomButton rbl = new randomButton();
         restart.setOnClickListener(rbl);
         reRandom = (Button) findViewById(R.id.again);
-        reRandom.setTypeface(getFace);
         randomButton rbl2 = new randomButton();
         restart.setOnClickListener(rbl2);
         boardtext = (TextView) findViewById(R.id.boardView);
 
+
+
         // Varible
-        boolean OK = false;
-        boolean SmartGood = false;
-        int choice = 0;
-        int rounds = 0;
+        boolean OK;
+        boolean SmartGood;
+        int choice;
+        int rounds;
         int[] boardsArray = new int[numOfRounds];
         boolean[] doneYet = new boolean[15];
-        String boardsS = "";
+        String boardsS;
 
         //   Program
+        // TODO add switch about Smart, now it always does smart
         do {
             SmartGood = false;
             for (int hello = 0; hello < boardsArray.length; hello++){boardsArray[hello] = 0;}
@@ -348,6 +313,8 @@ public class MainActivity extends AppCompatActivity {
             }
             else
             {
+
+
                 for (int count = 0; count < numOfRounds; count++)
                 {
                     do {
@@ -376,7 +343,6 @@ public class MainActivity extends AppCompatActivity {
         //for(int count2 = 1; count2 <= 13; count2++){if(contains(boardsArray,count2)){order[counter]=count2;counter++;}}
         boardsS = diplay(boardsArray);
         boardtext.setText(boardsS);
-        boardtext.setTypeface(getFace);
         randomize ocl312 = new randomize();
         reRandom.setOnClickListener(ocl312);
 
@@ -384,7 +350,7 @@ public class MainActivity extends AppCompatActivity {
     }
     private void randomExtras(){
          extratext = (TextView) findViewById(R.id.extraView);
-        int RandomPick = 0;
+        int RandomPick;
         int RRCount = 0;
         boolean good = false;
         boolean[] extras = new boolean[6];
@@ -417,15 +383,13 @@ public class MainActivity extends AppCompatActivity {
         if(readyDid[4]){output+="Use The Another Big Expansion Cards and Ship Components\n\n";}
         if(readyDid[5]){output+="Use the Support Team cards\n\n";}
         if(RRCount!=0){output+="Use "+RRCount+" Rough Road cards per round\n\n";}
-        Typeface getFace = Typeface.createFromAsset(getAssets(),"fonts2/Orbitron-Regular.ttf");
-        extratext.setTypeface(getFace);
         extratext.setText(output);
 
 
     }
     private boolean contains(int[] boardsArray, int numToFind){
 
-        for(int count = 0; count < boardsArray.length; count++)
+        for(int count : boardsArray)
         {if (boardsArray[count] == numToFind){return true;}}
         return false;
     }
@@ -446,7 +410,7 @@ public class MainActivity extends AppCompatActivity {
         if(contains(boardsArray,11)){one[2]=true;}
         if(contains(boardsArray,12)){one[3]=true;}
         if(contains(boardsArray,13)){one[3]=true;}
-        if(one[0]==one[1]){if(one[2]==one[3]){if(one[0]==one[3]){if(one[2]==true){return true;}}}}
+        if(one[0]==one[1]){if(one[2]==one[3]){if(one[0]==one[3]){if(one[2]){return true;}}}}
 
         return false;
     }
@@ -489,11 +453,9 @@ public class MainActivity extends AppCompatActivity {
         one[0]=false;
 
         if(contains(boardsArray,1)){one[0]=true;}
-        if(contains(boardsArray,2)){one[0]=true;}
-        if(contains(boardsArray,3)){one[0]=true;}
-        if(one[0]){return true;}
-
-        return false;
+        else if(contains(boardsArray,2)){one[0]=true;}
+        else if(contains(boardsArray,3)){one[0]=true;}
+        return one[0];
     }
     private class listenForACryOfHelp implements View.OnClickListener{
 
@@ -518,14 +480,7 @@ public class MainActivity extends AppCompatActivity {
                     "adds the support crew as an extra. If you don't want the randomizer to count the Support Crew as an extra, uncheck the box, if you " +
                     "do, check the box.\n\n\nHave Fun!!!";
             textView.setText(output);
-            Typeface getFace = Typeface.createFromAsset(getAssets(),"fonts2/Orbitron-Regular.ttf");
-            textView.setTypeface(getFace);
             textView.setMovementMethod(new ScrollingMovementMethod());
-            TextView help1 = (TextView) findViewById(R.id.textViewHelp);
-            help1.setTypeface(getFace);
-            TextView help2 = (TextView) findViewById(R.id.textView2help);
-            help2.setTypeface(getFace);
-            closeHelp.setTypeface(getFace);
         }
     }
     private class closeHelpListen implements View.OnClickListener{
@@ -535,59 +490,20 @@ public class MainActivity extends AppCompatActivity {
     }
     private boolean isGood(int choice, boolean[] doneYet){
         boolean OK;
-        if ((choice == 1) && (!doneYet[0]) && getVar("BSV")) {
-            OK = true;
-
-        }       // I      BS
-        else if ((choice == 2) && (!doneYet[1]) && getVar("ABEV")) {
-            OK = true;
-
-        } // I A    BIG
-        else if ((choice == 3) && (!doneYet[2]) && getVar("LMV")) {
-            OK = true;
-        }   // I C    LM
-        else if ((choice == 4) && (!doneYet[3]) && getVar("BSV")) {
-            OK = true;
-
-        }   // II     BS
-        else if ((choice == 5) && (!doneYet[4]) && getVar("TBEV")) {
-            OK = true;
-
-        } // II A   BIG
-        else if ((choice == 6) && (!doneYet[5]) && getVar("ABEV")) {
-            OK = true;
-
-        }  // II B   ABIG
-        else if ((choice == 7) && (!doneYet[6]) && getVar("LMV")) {
-            OK = true;
-
-        }  // II C   LM
-        else if ((choice == 8) && (!doneYet[7]) && getVar("BSV")) {
-            OK = true;
-
-        }   // III    BS
-        else if ((choice == 9) && (!doneYet[8]) && getVar("BSV")) {
-            OK = true;
-
-        }   // III A  BS
-        else if ((choice == 10) && (!doneYet[9]) && getVar("ABEV")) {
-            OK = true;
-
-        }// III B  ABIG
-        else if ((choice == 11) && (!doneYet[10]) && getVar("LMV")) {
-            OK = true;
-
-        } // III C  LM
-        else if ((choice == 12) && (!doneYet[11]) && getVar("ABEV")) {
-            OK = true;}// IV     ABIG
-        else if ((choice == 13) && (!doneYet[12]) && getVar("LMV")) {
-            OK = true;
-
-        } // IV C   LM
-        else {
-            OK = false;
-
-        }
+        if ((choice == 1) && (!doneYet[0]) && getVar("BSV")){OK = true;}       // I      BS
+        else if ((choice == 2) && (!doneYet[1]) && getVar("ABEV")){OK = true;} // I A    BIG
+        else if ((choice == 3) && (!doneYet[2]) && getVar("LMV")){OK = true;}  // I C    LM
+        else if ((choice == 4) && (!doneYet[3]) && getVar("BSV")){OK = true;}  // II     BS
+        else if ((choice == 5) && (!doneYet[4]) && getVar("TBEV")){OK = true;} // II A   BIG
+        else if ((choice == 6) && (!doneYet[5]) && getVar("ABEV")){OK = true;} // II B   ABIG
+        else if ((choice == 7) && (!doneYet[6]) && getVar("LMV")){OK = true;}  // II C   LM
+        else if ((choice == 8) && (!doneYet[7]) && getVar("BSV")){OK = true;}  // III    BS
+        else if ((choice == 9) && (!doneYet[8]) && getVar("BSV")){OK = true;}  // III A  BS
+        else if ((choice == 10) && (!doneYet[9]) && getVar("ABEV")){OK = true;}// III B  ABIG
+        else if ((choice == 11) && (!doneYet[10]) && getVar("LMV")){OK = true;}// III C  LM
+        else if ((choice == 12) && (!doneYet[11]) && getVar("ABEV")){OK = true;}// IV     ABIG
+        else if ((choice == 13) && (!doneYet[12]) && getVar("LMV")){return true;} // IV C   LM
+        else{OK =false;}
         return OK;
     }
     private String diplay(int[] boardsArray){

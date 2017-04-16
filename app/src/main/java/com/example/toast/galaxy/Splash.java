@@ -1,13 +1,10 @@
 package com.example.toast.galaxy;
 
-import android.graphics.Typeface;
+
 import android.os.Bundle;
-import android.os.Handler;
 import android.app.Activity;
 import android.content.Intent;
-import android.view.Menu;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 
 public class Splash extends Activity {
 
@@ -20,11 +17,6 @@ public class Splash extends Activity {
             public void run() {
 
                 try {
-                    Typeface getFace = Typeface.createFromAsset(getAssets(),"fonts2/Orbitron-Regular.ttf");
-                    TextView textView = (TextView) findViewById(R.id.textView7);
-                    textView.setTypeface(getFace);
-                    TextView textView2 = (TextView) findViewById(R.id.textView8);
-                    textView2.setTypeface(getFace);
                     ProgressBar loady = (ProgressBar) findViewById(R.id.loady);
                     for(int i = 0; i<=25;i++)
                     {
@@ -35,6 +27,7 @@ public class Splash extends Activity {
                     finish();
 
                 } catch (Exception e) {
+                    e.printStackTrace();
                 }
             }
         };

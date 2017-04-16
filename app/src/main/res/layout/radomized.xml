@@ -19,12 +19,14 @@
         android:layout_marginTop="8dp"
         android:text="@string/use_boards_extras"
         android:textSize="24sp"
+        android:fontFamily="sans-serif"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.051"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.017" />
+        app:layout_constraintVertical_bias="0.017"
+        tools:targetApi="jelly_bean"/>
 
     <TextView
         android:id="@+id/extraView"
@@ -38,12 +40,14 @@
         android:layout_marginTop="8dp"
         android:text="@string/textview"
         android:textSize="14sp"
+        android:fontFamily="sans-serif"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.289" />
+        app:layout_constraintVertical_bias="0.289"
+        tools:targetApi="jelly_bean"/>
 
     <TextView
         android:id="@+id/boardView"
@@ -57,6 +61,7 @@
         android:layout_marginTop="8dp"
         android:text="@string/iii_a"
         android:textSize="20sp"
+        android:fontFamily="sans-serif"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.051"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -74,6 +79,7 @@
         android:layout_marginRight="8dp"
         android:layout_marginTop="8dp"
         android:text="@string/re_randomize"
+        android:fontFamily="sans-serif"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -81,7 +87,8 @@
         app:layout_constraintVertical_bias="0.937"
         app:layout_constraintHorizontal_bias="0.045"
         android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp" />
+        android:layout_marginEnd="8dp"
+        tools:targetApi="jelly_bean"/>
 
     <Button
         android:id="@+id/restart"
@@ -92,6 +99,7 @@
         android:layout_marginRight="8dp"
         android:layout_marginTop="8dp"
         android:text="@string/restart"
+        android:fontFamily="sans-serif"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.962"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -99,6 +107,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.939"
         android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp" />
+        android:layout_marginEnd="8dp"
+        tools:targetApi="jelly_bean"/>
 
 </android.support.constraint.ConstraintLayout>
