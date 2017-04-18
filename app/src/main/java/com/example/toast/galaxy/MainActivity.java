@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
+//-----{ DECLARATIONS}----------------------------------------------------------------------------
     //   COMPONENTS
     public SeekBar rounds;
     public SeekBar extras;
@@ -48,10 +49,13 @@ public class MainActivity extends AppCompatActivity {
     public static int extraCount = 0;
     public static int numOfExtras = 0;
 
+    public static boolean[] prefArray = new boolean[19];
+
     //   OTHER
 
 
-//--------{ onCreate}-------------------------------------------------------------------------------------------------------------------
+//--------{PROGRAM}-------------------------------------------------------------------------------------------------------------------
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         main();
@@ -88,6 +92,29 @@ public class MainActivity extends AppCompatActivity {
         Smart = preferences.getBoolean("Smart", false);
         roundsS = preferences.getInt("rounds", 0);
         extrasS = preferences.getInt("extras", 0);
+
+        prefArray[0] = preferences.getBoolean("I", false);
+        prefArray[1] = preferences.getBoolean("IA", false);
+        prefArray[2] = preferences.getBoolean("IC", false);
+        prefArray[3] = preferences.getBoolean("II", false);
+        prefArray[4] = preferences.getBoolean("IIA", false);
+        prefArray[5] = preferences.getBoolean("IIB", false);
+        prefArray[6] = preferences.getBoolean("IIC", false);
+        prefArray[7] = preferences.getBoolean("III", false);
+        prefArray[8] = preferences.getBoolean("IIIA", false);
+        prefArray[9] = preferences.getBoolean("IIIB", false);
+        prefArray[10] = preferences.getBoolean("IIIC", false);
+        prefArray[11] = preferences.getBoolean("IV", false);
+        prefArray[12] = preferences.getBoolean("IVC", false);
+        prefArray[13] = preferences.getBoolean("RR", false);
+        prefArray[14] = preferences.getBoolean("EM", false);
+        prefArray[15] = preferences.getBoolean("TBET", false);
+        prefArray[16] = preferences.getBoolean("ABET", false);
+        prefArray[17] = preferences.getBoolean("SC", false);
+        prefArray[18] = preferences.getBoolean("M", false);
+
+
+
 
 
         numOfExtras = 0;
@@ -154,6 +181,10 @@ public class MainActivity extends AppCompatActivity {
             Button Help = (Button) findViewById(R.id.HELP);
             listenForACryOfHelp lfacoh = new listenForACryOfHelp();
             Help.setOnClickListener(lfacoh);
+
+            Button pref = (Button) findViewById(R.id.pref);
+            preference prefl = new preference();
+            pref.setOnClickListener(prefl);
         }
     }
     private class listenForSlider implements SeekBar.OnSeekBarChangeListener{
@@ -230,7 +261,6 @@ public class MainActivity extends AppCompatActivity {
             }else{
                 randomBoards();
                 randomExtras();
-
             }
 
         }
@@ -265,6 +295,36 @@ public class MainActivity extends AppCompatActivity {
               Smart = checked;
         }
 
+    }
+    public void onCheckboxPref(View view) {
+        boolean checked = ((CheckBox) view).isChecked();
+
+        switch(view.getId())
+        {
+            case R.id.BOARDI:
+                MV = checked;
+                break;
+            case R.id.BOARDIA:
+                SCV = checked;
+                break;
+            case R.id.BOARDIC:
+                MTORRV = checked;
+                break;
+            case R.id.BOARDII:
+                LMV = checked;
+                break;
+            case R.id.ABE:
+                ABEV = checked;
+                break;
+            case R.id.BS:
+                BSV = checked;
+                break;
+            case R.id.TBE:
+                TBEV = checked;
+                break;
+            case R.id.Smart:
+                Smart = checked;
+        }
     }
     private class randomButton implements  View.OnClickListener {
 
@@ -302,7 +362,6 @@ public class MainActivity extends AppCompatActivity {
         String boardsS;
 
         //   Program
-        // TODO add switch about Smart, now it always does smart
         do {
             SmartGood = false;
             for (int hello = 0; hello < boardsArray.length; hello++){boardsArray[hello] = 0;}
@@ -336,8 +395,8 @@ public class MainActivity extends AppCompatActivity {
                  } else {SmartGood = true;}
             }
 
-        }
-        while (!SmartGood);
+        }while (!SmartGood);
+
 
         // ORDERING THE ARRAY
         //for(int count2 = 1; count2 <= 13; count2++){if(contains(boardsArray,count2)){order[counter]=count2;counter++;}}
@@ -387,11 +446,14 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
-    private boolean contains(int[] boardsArray, int numToFind){
-
-        for(int count : boardsArray)
-        {if (boardsArray[count] == numToFind){return true;}}
-        return false;
+    private boolean contains(int[] boardsArray2, int numToFind){
+        boolean out = false;
+        int count = 1;
+        do {
+            if(boardsArray2[count-1] == numToFind){out = true;}
+            count++;
+        }while(count <= boardsArray2.length);
+        return out;
     }
     private boolean isSmart4(int[] boardsArray){
         boolean[] one = new boolean[4];
@@ -464,7 +526,7 @@ public class MainActivity extends AppCompatActivity {
 
             setContentView(R.layout.help);
             Button closeHelp = (Button) findViewById(R.id.closeHelp);
-            closeHelpListen chl = new closeHelpListen();
+            SettingsListener chl = new SettingsListener();
             closeHelp.setOnClickListener(chl);
             TextView textView = (TextView) findViewById(R.id.Helpy);
             String output ="";
@@ -482,11 +544,6 @@ public class MainActivity extends AppCompatActivity {
             textView.setText(output);
             textView.setMovementMethod(new ScrollingMovementMethod());
         }
-    }
-    private class closeHelpListen implements View.OnClickListener{
-
-        @Override
-        public void onClick(View v) {main();}
     }
     private boolean isGood(int choice, boolean[] doneYet){
         boolean OK;
@@ -508,20 +565,47 @@ public class MainActivity extends AppCompatActivity {
     }
     private String diplay(int[] boardsArray){
         String boardsS ="";
-        if(contains(boardsArray,1)){boardsS += "I\n";}
-        if(contains(boardsArray,2)){boardsS += "I A\n";}
-        if(contains(boardsArray,3)){boardsS += "I C\n";}
-        if(contains(boardsArray,4)){boardsS += "II\n";}
-        if(contains(boardsArray,5)){boardsS += "II A\n";}
-        if(contains(boardsArray,6)){boardsS += "II B\n";}
-        if(contains(boardsArray,7)){boardsS += "II C\n";}
-        if(contains(boardsArray,8)){boardsS += "III \n";}
-        if(contains(boardsArray,9)){boardsS += "III A\n";}
-        if(contains(boardsArray,10)){boardsS += "III B\n";}
-        if(contains(boardsArray,11)){boardsS += "III C\n";}
-        if(contains(boardsArray,12)){boardsS += "IV \n";}
-        if(contains(boardsArray,13)){boardsS += "IV C\n";}
+        try {
+            if(contains(boardsArray,1)){boardsS += "I\n";}
+            if(contains(boardsArray,2)){boardsS += "I A\n";}
+            if(contains(boardsArray,3)){boardsS += "I C\n";}
+            if(contains(boardsArray,4)){boardsS += "II\n";}
+            if(contains(boardsArray,5)){boardsS += "II A\n";}
+            if(contains(boardsArray,6)){boardsS += "II B\n";}
+            if(contains(boardsArray,7)){boardsS += "II C\n";}
+            if(contains(boardsArray,8)){boardsS += "III \n";}
+            if(contains(boardsArray,9)){boardsS += "III A\n";}
+            if(contains(boardsArray,10)){boardsS += "III B\n";}
+            if(contains(boardsArray,11)){boardsS += "III C\n";}
+            if(contains(boardsArray,12)){boardsS += "IV \n";}
+            if(contains(boardsArray,13)){boardsS += "IV C\n";}
+
+        } catch (Exception e) {
+            String out = e.toString();
+            makeToast(out,1);
+        }
         return boardsS;
     }
+    private void makeToast(String toDisply, int Length){
+        if(Length == 0)
+        {
+            Toast toast = Toast.makeText(getApplicationContext(), toDisply, Toast.LENGTH_SHORT);
+            toast.show();
+        }
+        else if (Length ==1)
+        {
+            Toast toast = Toast.makeText(getApplicationContext(), toDisply, Toast.LENGTH_LONG);
+            toast.show();
+        }
 
+
+    }
+    private class preference implements View.OnClickListener{
+        public void onClick(View v) {
+            setContentView(R.layout.preference2);
+            Button buttonClose = (Button) findViewById(R.id.button3);
+            SettingsListener sl3 = new SettingsListener();
+            buttonClose.setOnClickListener(sl3);
+        }
+    }
 }

@@ -6,6 +6,16 @@
     android:layout_height="match_parent"
     android:weightSum="1">
 
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif"
+        android:text="@string/preference"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        tools:targetApi="jelly_bean" />
+
     <ScrollView
         android:id="@+id/scroll"
         style="@android:style/Widget.Material.ScrollView"
@@ -28,27 +38,31 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif"
                 android:text="@string/boards"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                android:onClick="onCheckboxPref"/>
 
             <CheckBox
                 android:id="@+id/BOARDI"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif"
-                android:text="@string/board_i" />
+                android:text="@string/board_i"
+                android:onClick="onCheckboxPref"/>
 
             <CheckBox
                 android:id="@+id/BOARDIA"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/board_ia" />
+                android:text="@string/board_ia"
+                android:onClick="onCheckboxPref"/>
 
             <CheckBox
                 android:id="@+id/BOARDIC"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif"
-                android:text="@string/board_ic" />
+                android:text="@string/board_ic"
+                android:onClick="onCheckboxPref"/>
 
             <CheckBox
                 android:id="@+id/BOARDII"
@@ -60,120 +74,127 @@
                 android:id="@+id/BOARDIIA"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/board_iia" />
+                android:text="@string/board_iia"
+                android:onClick="onCheckboxPref"/>
 
             <CheckBox
                 android:id="@+id/BOARDIIB"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="serif"
-                android:text="@string/board_iib" />
+                android:text="@string/board_iib"
+                android:fontFamily="sans-serif"
+                android:onClick="onCheckboxPref"/>
 
             <CheckBox
                 android:id="@+id/BOARDIIC"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="monospace"
-                android:text="@string/board_iic" />
+                android:fontFamily="sans-serif"
+                android:text="@string/board_iic"
+                android:onClick="onCheckboxPref"/>
 
             <CheckBox
                 android:id="@+id/BOARDIII"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="monospace"
-                android:text="@string/board_iii" />
+                android:fontFamily="sans-serif"
+                android:text="@string/board_iii"
+                android:onClick="onCheckboxPref"/>
 
             <CheckBox
                 android:id="@+id/BOARDIIIA"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="monospace"
-                android:text="@string/board_iiia" />
+                android:text="@string/board_iiia"
+                android:fontFamily="sans-serif"
+                android:onClick="onCheckboxPref"/>
 
             <CheckBox
                 android:id="@+id/BOARDIIIB"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="monospace"
-                android:text="@string/board_iiib" />
+                android:fontFamily="sans-serif"
+                android:text="@string/board_iiib"
+                android:onClick="onCheckboxPref"
+                />
 
             <CheckBox
                 android:id="@+id/BOARDIIIC"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="monospace"
-                android:text="@string/board_iiic" />
+                android:fontFamily="sans-serif"
+                android:text="@string/board_iiic"
+                android:onClick="onCheckboxPref"/>
 
             <CheckBox
                 android:id="@+id/BOARDIV"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="monospace"
-                android:text="@string/board_iv" />
+                android:fontFamily="sans-serif"
+                android:text="@string/board_iv"
+                android:onClick="onCheckboxPref"/>
 
             <CheckBox
                 android:id="@+id/BOARDIVC"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="monospace"
-                android:text="@string/board_ivc" />
+                android:fontFamily="sans-serif"
+                android:text="@string/board_ivc"
+                android:onClick="onCheckboxPref"/>
 
             <TextView
                 android:id="@+id/textView11"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="monospace"
+                android:fontFamily="sans-serif"
                 android:text="@string/extras"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                android:onClick="onCheckboxPref"/>
 
             <CheckBox
                 android:id="@+id/RRP"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="monospace"
-                android:text="@string/rough_roads" />
+                android:fontFamily="sans-serif"
+                android:text="@string/rough_roads"
+                android:onClick="onCheckboxPref"/>
 
             <CheckBox
                 android:id="@+id/EMP"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/evil_machinations" />
+                android:text="@string/evil_machinations"
+                android:onClick="onCheckboxPref"/>
 
             <CheckBox
                 android:id="@+id/TBEP"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/the_big_expansion_tiles_and_cards" />
+                android:text="@string/the_big_expansion_tiles_and_cards"
+                android:onClick="onCheckboxPref"/>
 
             <CheckBox
                 android:id="@+id/ABEP"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/another_big_expansion_tiles_and_cards" />
+                android:text="@string/another_big_expansion_tiles_and_cards"
+                android:onClick="onCheckboxPref"/>
 
             <CheckBox
                 android:id="@+id/STP"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/support_team" />
+                android:text="@string/support_team"
+                android:onClick="onCheckboxPref"/>
 
             <CheckBox
                 android:id="@+id/MP"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/missions2" />
+                android:text="@string/missions2"
+                android:onClick="onCheckboxPref"/>
         </LinearLayout>
     </ScrollView>
-
-    <TextView
-        android:id="@+id/textView10"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="sans-serif"
-        android:text="@string/preference"
-        android:textAlignment="center"
-        android:textSize="24sp"
-        tools:targetApi="jelly_bean" />
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"

@@ -20,7 +20,7 @@ public class Splash extends Activity {
                     ProgressBar loady = (ProgressBar) findViewById(R.id.loady);
                     for(int i = 0; i<=25;i++)
                     {
-                        sleep(80);loady.setProgress(i*4);
+                        sleep(150);loady.setProgress(i*4);
                     }
                     Intent i = new Intent(getBaseContext(), MainActivity.class);
                     startActivity(i);
