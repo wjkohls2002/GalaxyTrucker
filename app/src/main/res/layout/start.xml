@@ -11,10 +11,12 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="All content is a © and a trademark of Czech Games Edition and Rio Grande Games.\n\n\n\n     Loading. . . "
+        android:text="All content is a © and a trademark of Czech Games Edition and Rio Grande Games.\n\n\n\n     Loading. . . \n\n1.0.0.0"
         android:textAlignment="center"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -22,15 +24,13 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="HardcodedText"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintVertical_bias="0.529" />
+        app:layout_constraintVertical_bias="0.581"
+        tools:ignore="HardcodedText" />
 
     <ProgressBar
         android:id="@+id/loady"
         style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
