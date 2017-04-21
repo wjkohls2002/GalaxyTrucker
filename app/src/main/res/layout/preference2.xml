@@ -68,7 +68,8 @@
                 android:id="@+id/BOARDII"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/board_ii" />
+                android:text="@string/board_ii"
+                android:onClick="onCheckboxPref"/>
 
             <CheckBox
                 android:id="@+id/BOARDIIA"

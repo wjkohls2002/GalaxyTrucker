@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     public TextView Close2;
-    public TextView boardtext;
+    public TextView boardText;
     public TextView extratext;
 
 //   VARIABLES
@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
     public static boolean MTORRV= false;
     public static boolean BSV = false;
     public static boolean Smart = false;
+    public static boolean YesNo = false;
 
     public static int roundsS = 0;
     public static int extrasS= 0;
@@ -82,26 +83,26 @@ public class MainActivity extends AppCompatActivity {
 
 //----------{Running During Main}----------------------------------------------------------------------------------------------------------
         SharedPreferences preferences = getApplicationContext().getSharedPreferences("Trucker", android.content.Context.MODE_PRIVATE);
-        BSV = preferences.getBoolean("BSV", false);
+        BSV = preferences.getBoolean("BSV", true);
         TBEV = preferences.getBoolean("TBEV", false);
         ABEV = preferences.getBoolean("ABEV", false);
         LMV = preferences.getBoolean("LMV", false);
         MV = preferences.getBoolean("MV", false);
         SCV = preferences.getBoolean("SCV", false);
         MTORRV= preferences.getBoolean("MTORRV", false);
-        Smart = preferences.getBoolean("Smart", false);
-        roundsS = preferences.getInt("rounds", 0);
+        Smart = preferences.getBoolean("Smart", true);
+        roundsS = preferences.getInt("rounds", 3);
         extrasS = preferences.getInt("extras", 0);
 
-        prefArray[0] = preferences.getBoolean("I", false);
+        prefArray[0] = preferences.getBoolean("I", true);
         prefArray[1] = preferences.getBoolean("IA", false);
         prefArray[2] = preferences.getBoolean("IC", false);
-        prefArray[3] = preferences.getBoolean("II", false);
+        prefArray[3] = preferences.getBoolean("II", true);
         prefArray[4] = preferences.getBoolean("IIA", false);
         prefArray[5] = preferences.getBoolean("IIB", false);
         prefArray[6] = preferences.getBoolean("IIC", false);
-        prefArray[7] = preferences.getBoolean("III", false);
-        prefArray[8] = preferences.getBoolean("IIIA", false);
+        prefArray[7] = preferences.getBoolean("III", true);
+        prefArray[8] = preferences.getBoolean("IIIA", true);
         prefArray[9] = preferences.getBoolean("IIIB", false);
         prefArray[10] = preferences.getBoolean("IIIC", false);
         prefArray[11] = preferences.getBoolean("IV", false);
@@ -110,11 +111,8 @@ public class MainActivity extends AppCompatActivity {
         prefArray[14] = preferences.getBoolean("EM", false);
         prefArray[15] = preferences.getBoolean("TBET", false);
         prefArray[16] = preferences.getBoolean("ABET", false);
-        prefArray[17] = preferences.getBoolean("SC", false);
+        prefArray[17] = preferences.getBoolean("ST", false);
         prefArray[18] = preferences.getBoolean("M", false);
-
-
-
 
 
         numOfExtras = 0;
@@ -126,6 +124,9 @@ public class MainActivity extends AppCompatActivity {
         if(ABEV){numOfExtras+=1;numOfRounds+=3;}
         if(BSV){numOfRounds+=4;}
         if(TBEV){numOfRounds+=2;numOfExtras+=3;}
+
+        numOfRounds -= decreaseRounds(prefArray);
+        numOfExtras -= decreaseExtras(prefArray);
 
         rounds.setMax(numOfRounds);
         extras.setMax(numOfExtras);
@@ -155,14 +156,15 @@ public class MainActivity extends AppCompatActivity {
             CheckBox smartS = (CheckBox) findViewById(R.id.Smart);
 
             SharedPreferences preferences = getApplicationContext().getSharedPreferences("Trucker", android.content.Context.MODE_PRIVATE);
-            BSV = preferences.getBoolean("BSV", false);
+            BSV = preferences.getBoolean("BSV", true);
             TBEV = preferences.getBoolean("TBEV", false);
             ABEV = preferences.getBoolean("ABEV", false);
             LMV = preferences.getBoolean("LMV", false);
             MV = preferences.getBoolean("MV", false);
             SCV = preferences.getBoolean("SCV", false);
             MTORRV= preferences.getBoolean("MTORRV", false);
-            Smart = preferences.getBoolean("Smart", false);
+            Smart = preferences.getBoolean("Smart", true);
+
 
             baseSet.setChecked(BSV);
             bigE.setChecked(TBEV);
@@ -172,7 +174,6 @@ public class MainActivity extends AppCompatActivity {
             crew.setChecked(SCV);
             RR.setChecked(MTORRV);
             smartS.setChecked(Smart);
-
 
             numOfRounds = 0;
             Close2 = (Button) findViewById(R.id.Close);
@@ -185,6 +186,29 @@ public class MainActivity extends AppCompatActivity {
             Button pref = (Button) findViewById(R.id.pref);
             preference prefl = new preference();
             pref.setOnClickListener(prefl);
+
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putBoolean("I", prefArray[0]);
+            editor.putBoolean("IA",prefArray[1]);
+            editor.putBoolean("IC",prefArray[2]);
+            editor.putBoolean("II",prefArray[3]);
+            editor.putBoolean("IIA",prefArray[4]);
+            editor.putBoolean("IIB",prefArray[5]);
+            editor.putBoolean("IIC",prefArray[6]);
+            editor.putBoolean("III",prefArray[7]);
+            editor.putBoolean("IIIA", prefArray[8]);
+            editor.putBoolean("IIIB",prefArray[9]);
+            editor.putBoolean("IIIC",prefArray[10]);
+            editor.putBoolean("IV",prefArray[11]);
+            editor.putBoolean("IVC",prefArray[12]);
+            editor.putBoolean("RR",prefArray[13]);
+            editor.putBoolean("EM",prefArray[14]);
+            editor.putBoolean("TBET",prefArray[15]);
+            editor.putBoolean("ABET", prefArray[16]);
+            editor.putBoolean("ST",prefArray[17]);
+            editor.putBoolean("M",prefArray[18]);
+
+            editor.apply();
         }
     }
     private class listenForSlider implements SeekBar.OnSeekBarChangeListener{
@@ -193,9 +217,9 @@ public class MainActivity extends AppCompatActivity {
         public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
             if (seekBar == rounds)
             {
-                TextView roundstext = (TextView)  findViewById(R.id.roundsText);
+                TextView roundsText = (TextView)  findViewById(R.id.roundsText);
                 String print =  "Rounds: "+rounds.getProgress();
-                roundstext.setText(print);
+                roundsText.setText(print);
                 numOfRounds = rounds.getProgress();
                 SharedPreferences preferences = getApplicationContext().getSharedPreferences("Trucker", android.content.Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = preferences.edit();
@@ -302,28 +326,63 @@ public class MainActivity extends AppCompatActivity {
         switch(view.getId())
         {
             case R.id.BOARDI:
-                MV = checked;
+                prefArray[0] = checked;
                 break;
             case R.id.BOARDIA:
-                SCV = checked;
+                prefArray[1] = checked;
                 break;
             case R.id.BOARDIC:
-                MTORRV = checked;
+                prefArray[2] = checked;
                 break;
             case R.id.BOARDII:
-                LMV = checked;
+                prefArray[3] = checked;
                 break;
-            case R.id.ABE:
-                ABEV = checked;
+            case R.id.BOARDIIA:
+                prefArray[4] = checked;
                 break;
-            case R.id.BS:
-                BSV = checked;
+            case R.id.BOARDIIB:
+                prefArray[5] = checked;
                 break;
-            case R.id.TBE:
-                TBEV = checked;
+            case R.id.BOARDIIC:
+                prefArray[6] = checked;
                 break;
-            case R.id.Smart:
-                Smart = checked;
+            case R.id.BOARDIII:
+                prefArray[7] = checked;
+                break;
+            case R.id.BOARDIIIA:
+                prefArray[8] = checked;
+                break;
+            case R.id.BOARDIIIB:
+                prefArray[9] = checked;
+                break;
+            case R.id.BOARDIIIC:
+                prefArray[10] = checked;
+                break;
+            case R.id.BOARDIV:
+                prefArray[11] = checked;
+                break;
+            case R.id.BOARDIVC:
+                prefArray[12] = checked;
+                break;
+            case R.id.RRP:
+                prefArray[13] = checked;
+                break;
+            case R.id.EMP:
+                prefArray[14] = checked;
+                break;
+            case R.id.TBEP:
+                prefArray[15] = checked;
+                break;
+            case R.id.ABEP:
+                prefArray[16] = checked;
+                break;
+            case R.id.STP:
+                prefArray[17] = checked;
+                break;
+            case R.id.MP:
+                prefArray[18] = checked;
+                break;
+
         }
     }
     private class randomButton implements  View.OnClickListener {
@@ -348,7 +407,7 @@ public class MainActivity extends AppCompatActivity {
         reRandom = (Button) findViewById(R.id.again);
         randomButton rbl2 = new randomButton();
         restart.setOnClickListener(rbl2);
-        boardtext = (TextView) findViewById(R.id.boardView);
+        boardText = (TextView) findViewById(R.id.boardView);
 
 
 
@@ -401,7 +460,7 @@ public class MainActivity extends AppCompatActivity {
         // ORDERING THE ARRAY
         //for(int count2 = 1; count2 <= 13; count2++){if(contains(boardsArray,count2)){order[counter]=count2;counter++;}}
         boardsS = diplay(boardsArray);
-        boardtext.setText(boardsS);
+        boardText.setText(boardsS);
         randomize ocl312 = new randomize();
         reRandom.setOnClickListener(ocl312);
 
@@ -420,16 +479,16 @@ public class MainActivity extends AppCompatActivity {
         {
             do {
                 RandomPick = (int) ((Math.random()*6));
-                if(RandomPick==0&&(!readyDid[0])&&(getVar("TBEV")))// RR
+                if(RandomPick==0&&(!readyDid[0])&&(getVar("TBEV")&&prefArray[13]))// RR
                 {
                     if(MTORRV){RRCount++;good=true;}
                     else{RRCount++;readyDid[0]=true;good=true;}
                 }
-                if(RandomPick==1&&(!readyDid[1])&&(getVar("MV"))){readyDid[1]=true;good=true;}  //Mission
-                if(RandomPick==2&&(!readyDid[2])&&(getVar("TBEV"))){readyDid[2]=true;good=true;} //Evil Mech.
-                if(RandomPick==3&&(!readyDid[3])&&(getVar("TBEV"))){readyDid[3]=true;good=true;} //BE cards
-                if(RandomPick==4&&(!readyDid[4])&&(getVar("ABEV"))){readyDid[4]=true;good=true;} //ABE cards
-                if(RandomPick==5&&(!readyDid[5])&&(getVar("ABEV"))){readyDid[5]=true;good=true;} //SC (dependent on var)
+                if(RandomPick==1&&(!readyDid[1])&&(getVar("MV")&&prefArray[18])){readyDid[1]=true;good=true;}  //Mission
+                if(RandomPick==2&&(!readyDid[2])&&(getVar("TBEV")&&prefArray[14])){readyDid[2]=true;good=true;} //Evil Mech.
+                if(RandomPick==3&&(!readyDid[3])&&(getVar("TBEV")&&prefArray[15])){readyDid[3]=true;good=true;} //BE cards
+                if(RandomPick==4&&(!readyDid[4])&&(getVar("ABEV")&&prefArray[16])){readyDid[4]=true;good=true;} //ABE cards
+                if(RandomPick==5&&(!readyDid[5])&&(getVar("ABEV")&&prefArray[17])){readyDid[5]=true;good=true;} //SC (dependent on var)
             }while (!good);
             good = false;
         }
@@ -540,26 +599,30 @@ public class MainActivity extends AppCompatActivity {
                     " ROUGH ROAD\nThe randomizer will also pick how many Rough Roads for you to do each round. If you want to have more than one " +
                     "Rough Road, check the More than one Rough Roads box. You will have a maximum of ten Rough Roads\n\nSUPPORT CREW\nThe Support Crew Box" +
                     "adds the support crew as an extra. If you don't want the randomizer to count the Support Crew as an extra, uncheck the box, if you " +
-                    "do, check the box.\n\n\nHave Fun!!!";
+                    "do, check the box.\n\nPREFERENCES \nIf you click on the preference button, it will take you to a screen where " +
+                    "there will be a list of all of the boards and extras the app will randomize. If you want the app to random a board, " +
+                    "for example, you want the randomizer to be able to pick board IIA, you would check the Board IIA checkbox." +
+                    "If you don't wnat a board/extra, for example, you rellay don't like Evil Machinations, if you uncheck the box, " +
+                    "the randomizer will never pick Evil Machinations. \n\n\nHave Fun!!!";
             textView.setText(output);
             textView.setMovementMethod(new ScrollingMovementMethod());
         }
     }
     private boolean isGood(int choice, boolean[] doneYet){
         boolean OK;
-        if ((choice == 1) && (!doneYet[0]) && getVar("BSV")){OK = true;}       // I      BS
-        else if ((choice == 2) && (!doneYet[1]) && getVar("ABEV")){OK = true;} // I A    BIG
-        else if ((choice == 3) && (!doneYet[2]) && getVar("LMV")){OK = true;}  // I C    LM
-        else if ((choice == 4) && (!doneYet[3]) && getVar("BSV")){OK = true;}  // II     BS
-        else if ((choice == 5) && (!doneYet[4]) && getVar("TBEV")){OK = true;} // II A   BIG
-        else if ((choice == 6) && (!doneYet[5]) && getVar("ABEV")){OK = true;} // II B   ABIG
-        else if ((choice == 7) && (!doneYet[6]) && getVar("LMV")){OK = true;}  // II C   LM
-        else if ((choice == 8) && (!doneYet[7]) && getVar("BSV")){OK = true;}  // III    BS
-        else if ((choice == 9) && (!doneYet[8]) && getVar("BSV")){OK = true;}  // III A  BS
-        else if ((choice == 10) && (!doneYet[9]) && getVar("ABEV")){OK = true;}// III B  ABIG
-        else if ((choice == 11) && (!doneYet[10]) && getVar("LMV")){OK = true;}// III C  LM
-        else if ((choice == 12) && (!doneYet[11]) && getVar("ABEV")){OK = true;}// IV     ABIG
-        else if ((choice == 13) && (!doneYet[12]) && getVar("LMV")){return true;} // IV C   LM
+        if ((choice == 1) && (!doneYet[0]) && getVar("BSV")&& prefArray[0]){OK = true;}       // I      BS
+        else if ((choice == 2) && (!doneYet[1]) && getVar("ABEV")&& prefArray[1]){OK = true;} // I A    BIG
+        else if ((choice == 3) && (!doneYet[2]) && getVar("LMV")&& prefArray[2]){OK = true;}  // I C    LM
+        else if ((choice == 4) && (!doneYet[3]) && getVar("BSV")&& prefArray[3]){OK = true;}  // II     BS
+        else if ((choice == 5) && (!doneYet[4]) && getVar("TBEV")&& prefArray[4]){OK = true;} // II A   BIG
+        else if ((choice == 6) && (!doneYet[5]) && getVar("ABEV")&& prefArray[5]){OK = true;} // II B   ABIG
+        else if ((choice == 7) && (!doneYet[6]) && getVar("LMV")&& prefArray[6]){OK = true;}  // II C   LM
+        else if ((choice == 8) && (!doneYet[7]) && getVar("BSV")&& prefArray[7]){OK = true;}  // III    BS
+        else if ((choice == 9) && (!doneYet[8]) && getVar("BSV")&& prefArray[8]){OK = true;}  // III A  BS
+        else if ((choice == 10) && (!doneYet[9]) && getVar("ABEV")&& prefArray[9]){OK = true;}// III B  ABIG
+        else if ((choice == 11) && (!doneYet[10]) && getVar("LMV")&& prefArray[10]){OK = true;}// III C  LM
+        else if ((choice == 12) && (!doneYet[11]) && getVar("ABEV")&& prefArray[11]){OK = true;}// IV     ABIG
+        else if ((choice == 13) && (!doneYet[12]) && getVar("LMV")&& prefArray[12]){return true;} // IV C   LM
         else{OK =false;}
         return OK;
     }
@@ -602,10 +665,113 @@ public class MainActivity extends AppCompatActivity {
     }
     private class preference implements View.OnClickListener{
         public void onClick(View v) {
+            SharedPreferences preferences2 = getApplicationContext().getSharedPreferences("Trucker", android.content.Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = preferences2.edit();
+            editor.putBoolean("BSV", BSV);
+            editor.putBoolean("TBEV",TBEV);
+            editor.putBoolean("ABEV",ABEV);
+            editor.putBoolean("MV",MV);
+            editor.putBoolean("LMV",LMV);
+            editor.putBoolean("Smart",Smart);
+            editor.putBoolean("MTORRV",MTORRV);
+            editor.putBoolean("SCV",SCV);
+
+            editor.apply();
+
             setContentView(R.layout.preference2);
+
+            SharedPreferences preferences = getApplicationContext().getSharedPreferences("Trucker", android.content.Context.MODE_PRIVATE);
+            prefArray[0] = preferences.getBoolean("I", false);
+            prefArray[1] = preferences.getBoolean("IA", false);
+            prefArray[2] = preferences.getBoolean("IC", false);
+            prefArray[3] = preferences.getBoolean("II", false);
+            prefArray[4] = preferences.getBoolean("IIA", false);
+            prefArray[5] = preferences.getBoolean("IIB", false);
+            prefArray[6] = preferences.getBoolean("IIC", false);
+            prefArray[7] = preferences.getBoolean("III", false);
+            prefArray[8] = preferences.getBoolean("IIIA", false);
+            prefArray[9] = preferences.getBoolean("IIIB", false);
+            prefArray[10] = preferences.getBoolean("IIIC", false);
+            prefArray[11] = preferences.getBoolean("IV", false);
+            prefArray[12] = preferences.getBoolean("IVC", false);
+            prefArray[13] = preferences.getBoolean("RR", false);
+            prefArray[14] = preferences.getBoolean("EM", false);
+            prefArray[15] = preferences.getBoolean("TBET", false);
+            prefArray[16] = preferences.getBoolean("ABET", false);
+            prefArray[17] = preferences.getBoolean("ST", false);
+            prefArray[18] = preferences.getBoolean("M", false);
+
+            CheckBox I = (CheckBox) findViewById(R.id.BOARDI);
+            CheckBox IA = (CheckBox) findViewById(R.id.BOARDIA);
+            CheckBox IC = (CheckBox) findViewById(R.id.BOARDIC);
+            CheckBox II = (CheckBox) findViewById(R.id.BOARDII);
+            CheckBox IIA = (CheckBox) findViewById(R.id.BOARDIIA);
+            CheckBox IIB = (CheckBox) findViewById(R.id.BOARDIIB);
+            CheckBox IIC = (CheckBox) findViewById(R.id.BOARDIIC);
+            CheckBox III = (CheckBox) findViewById(R.id.BOARDIII);
+            CheckBox IIIA = (CheckBox) findViewById(R.id.BOARDIIIA);
+            CheckBox IIIB = (CheckBox) findViewById(R.id.BOARDIIIB);
+            CheckBox IIIC = (CheckBox) findViewById(R.id.BOARDIIIC);
+            CheckBox IV = (CheckBox) findViewById(R.id.BOARDIV);
+            CheckBox IVC = (CheckBox) findViewById(R.id.BOARDIVC);
+            CheckBox RRP = (CheckBox) findViewById(R.id.RRP);
+            CheckBox EMP = (CheckBox) findViewById(R.id.EMP);
+            CheckBox SCP = (CheckBox) findViewById(R.id.STP);
+            CheckBox APET = (CheckBox) findViewById(R.id.ABEP);
+            CheckBox TPET = (CheckBox) findViewById(R.id.TBEP);
+            CheckBox MP = (CheckBox) findViewById(R.id.MP);
+
+            I.setChecked(prefArray[0]);
+            IA.setChecked(prefArray[1]);
+            IC.setChecked(prefArray[2]);
+            II.setChecked(prefArray[3]);
+            IIA.setChecked(prefArray[4]);
+            IIB.setChecked(prefArray[5]);
+            IIC.setChecked(prefArray[6]);
+            III.setChecked(prefArray[7]);
+            IIIA.setChecked(prefArray[8]);
+            IIIB.setChecked(prefArray[9]);
+            IIIC.setChecked(prefArray[10]);
+            IV.setChecked(prefArray[11]);
+            IVC.setChecked(prefArray[12]);
+            RRP.setChecked(prefArray[13]);
+            EMP.setChecked(prefArray[14]);
+            TPET.setChecked(prefArray[15]);
+            APET.setChecked(prefArray[16]);
+            SCP.setChecked(prefArray[17]);
+            MP.setChecked(prefArray[18]);
+
             Button buttonClose = (Button) findViewById(R.id.button3);
             SettingsListener sl3 = new SettingsListener();
             buttonClose.setOnClickListener(sl3);
+
         }
+    }
+    private int decreaseRounds(boolean[] prefArray2){
+        int amountReturn = 0;
+        if(!prefArray2[0]&&BSV){amountReturn+=1;}   // I
+        if(!prefArray2[1]&&TBEV){amountReturn+=1;}  // IA
+        if(!prefArray2[2]&&LMV){amountReturn+=1;}   // IC
+        if(!prefArray2[3]&&BSV){amountReturn+=1;}   // II
+        if(!prefArray2[4]&&TBEV){amountReturn+=1;}  // IIA
+        if(!prefArray2[5]&&ABEV){amountReturn+=1;}  // IIB
+        if(!prefArray2[6]&&LMV){amountReturn+=1;}   // IIC
+        if(!prefArray2[7]&&BSV){amountReturn+=1;}   // III
+        if(!prefArray2[8]&&TBEV){amountReturn+=1;}  // IIIA
+        if(!prefArray2[9]&&ABEV){amountReturn+=1;} // IIIB
+        if(!prefArray2[10]&&LMV){amountReturn+=1;}  // IIIC
+        if(!prefArray2[11]&&ABEV){amountReturn+=1;} // IV
+        if(!prefArray2[12]&&LMV){amountReturn+=1;}  // IVC
+        return amountReturn;
+    }
+    private int decreaseExtras(boolean[] prefArray2){
+        int amountReturn = 0;
+        if (!prefArray2[13]&&TBEV){amountReturn+=1;if(MTORRV){amountReturn+=9;}}
+        if (!prefArray2[14]&&TBEV){amountReturn+=1;}
+        if (!prefArray2[15]&&TBEV){amountReturn+=1;}
+        if (!prefArray2[16]&&ABEV){amountReturn+=1;}
+        if (!prefArray2[17]&&ABEV){amountReturn+=1;}
+        if (!prefArray2[18]&&MV){amountReturn+=1;}
+        return amountReturn;
     }
 }
