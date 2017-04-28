@@ -27,7 +27,7 @@
     <string name="close3">Close</string>
     <string name="textview3">TextView</string>
     <string name="all_content_is_and_trademark_of_czech_games_edition_and_rio_grande_games_n_n_n_n_loading">All content is © and tradematrk of Czech Games Edition and Rio Grande Games.       Loading. . .</string>
-    <string name="this_is_an_unlicened_fan_created_randomizer_app_for_use_with_the_galaxy_trucker_board_game">This is an unlicened, fan-created randomizer app for use with the Galaxy Trucker board game.</string>
+    <string name="this_is_an_unlicened_fan_created_randomizer_app_for_use_with_the_galaxy_trucker_board_game">This is an unlicensed, fan-created randomizer app for use with the Galaxy Trucker board game.</string>
     <string name="using_the_randomizer">Using the Randomizer</string>
     <string name="get_last_randomize">Get Last Randomize</string>
     <string name="help2">HELP</string>
@@ -61,4 +61,5 @@
     <string name="use_boards_extras">Use Boards: Extras:</string>
     <string name="select_all">Select All</string>
     <string name="save_and_close">Save and Close</string>
+    <string name="select_all2">Select All</string>
 </resources>

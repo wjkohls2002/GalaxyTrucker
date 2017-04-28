@@ -41,7 +41,6 @@ public class MainActivity extends AppCompatActivity {
     public static boolean MTORRV= false;
     public static boolean BSV = false;
     public static boolean Smart = false;
-    public static boolean YesNo = false;
 
     public static int roundsS = 0;
     public static int extrasS= 0;
@@ -322,65 +321,235 @@ public class MainActivity extends AppCompatActivity {
     }
     public void onCheckboxPref(View view) {
         boolean checked = ((CheckBox) view).isChecked();
-
+        CheckBox I = (CheckBox) findViewById(R.id.BOARDI);
+        CheckBox IA = (CheckBox) findViewById(R.id.BOARDIA);
+        CheckBox IC = (CheckBox) findViewById(R.id.BOARDIC);
+        CheckBox II = (CheckBox) findViewById(R.id.BOARDII);
+        CheckBox IIA = (CheckBox) findViewById(R.id.BOARDIIA);
+        CheckBox IIB = (CheckBox) findViewById(R.id.BOARDIIB);
+        CheckBox IIC = (CheckBox) findViewById(R.id.BOARDIIC);
+        CheckBox III = (CheckBox) findViewById(R.id.BOARDIII);
+        CheckBox IIIA = (CheckBox) findViewById(R.id.BOARDIIIA);
+        CheckBox IIIB = (CheckBox) findViewById(R.id.BOARDIIIB);
+        CheckBox IIIC = (CheckBox) findViewById(R.id.BOARDIIIC);
+        CheckBox IV = (CheckBox) findViewById(R.id.BOARDIV);
+        CheckBox IVC = (CheckBox) findViewById(R.id.BOARDIVC);
+        CheckBox RRP = (CheckBox) findViewById(R.id.RRP);
+        CheckBox EMP = (CheckBox) findViewById(R.id.EMP);
+        CheckBox SCP = (CheckBox) findViewById(R.id.STP);
+        CheckBox APET = (CheckBox) findViewById(R.id.ABEP);
+        CheckBox TPET = (CheckBox) findViewById(R.id.TBEP);
+        CheckBox MP = (CheckBox) findViewById(R.id.MP);
         switch(view.getId())
         {
             case R.id.BOARDI:
-                prefArray[0] = checked;
+                if(BSV)
+                {
+                    prefArray[0] = checked;
+                }
+                else
+                {
+                    I.setChecked(false);
+                    makeToast("You need the Base Set to play Board I", 0);
+                }
                 break;
             case R.id.BOARDIA:
-                prefArray[1] = checked;
+                if(TBEV)
+                {
+                    prefArray[1] = checked;
+                }
+                else
+                {
+                    IA.setChecked(false);
+                    makeToast("You need the Big Expansion to play Board IA", 0);
+                }
                 break;
             case R.id.BOARDIC:
-                prefArray[2] = checked;
+                if(LMV)
+                {
+                    prefArray[2] = checked;
+                }
+                else
+                {
+                    IC.setChecked(false);
+                    makeToast("You need the Latest Models Expansion to play Board IC", 0);
+                }
                 break;
             case R.id.BOARDII:
-                prefArray[3] = checked;
+                if(BSV)
+                {
+                    prefArray[3] = checked;
+                }
+                else
+                {
+                    II.setChecked(false);
+                    makeToast("You need the Base Set to play Board II", 0);
+                }
                 break;
             case R.id.BOARDIIA:
-                prefArray[4] = checked;
+                if(TBEV)
+                {
+                    prefArray[4] = checked;
+                }
+                else
+                {
+                    IIA.setChecked(false);
+                    makeToast("You need the Big Expansion to play Board IIA", 0);
+                }
                 break;
             case R.id.BOARDIIB:
-                prefArray[5] = checked;
+                if(ABEV)
+                {
+                    prefArray[5] = checked;
+                }
+                else
+                {
+                    IIB.setChecked(false);
+                    makeToast("You need the Another Big Expansion to play Board IIB", 0);
+                }
                 break;
             case R.id.BOARDIIC:
-                prefArray[6] = checked;
+                if(LMV)
+                {
+                    prefArray[6] = checked;
+                }
+                else
+                {
+                    IIC.setChecked(false);
+                    makeToast("You need the Latest Models Expansion to play Board IIC", 0);
+                }
                 break;
             case R.id.BOARDIII:
-                prefArray[7] = checked;
+                if(BSV)
+                {
+                    prefArray[7] = checked;
+                }
+                else
+                {
+                    III.setChecked(false);
+                    makeToast("You need the Base Set to play Board III", 0);
+                }
                 break;
             case R.id.BOARDIIIA:
-                prefArray[8] = checked;
+                if(BSV)
+                {
+                    prefArray[8] = checked;
+                }
+                else
+                {
+                    IIIA.setChecked(false);
+                    makeToast("You need the Base Set to play Board IIIA", 0);
+                }
                 break;
             case R.id.BOARDIIIB:
-                prefArray[9] = checked;
+                if(ABEV)
+                {
+                    prefArray[9] = checked;
+                }
+                else
+                {
+                    IIIB.setChecked(false);
+                    makeToast("You need the Another Big Expansion to play Board IIIB", 0);
+                }
                 break;
             case R.id.BOARDIIIC:
-                prefArray[10] = checked;
+                if(LMV)
+                {
+                    prefArray[10] = checked;
+                }
+                else
+                {
+                    IIIC.setChecked(false);
+                    makeToast("You need the Latest Models Expansion to play Board IIIC", 0);
+                }
                 break;
             case R.id.BOARDIV:
-                prefArray[11] = checked;
+                if(ABEV)
+                {
+                    prefArray[11] = checked;
+                }
+                else
+                {
+                    IV.setChecked(false);
+                    makeToast("You need the Another Big Expansion to play Board IV", 0);
+                }
                 break;
             case R.id.BOARDIVC:
-                prefArray[12] = checked;
+                if(LMV)
+                {
+                    prefArray[12] = checked;
+                }
+                else
+                {
+                    IVC.setChecked(false);
+                    makeToast("You need the Latest Models Expansion to play Board IVC", 0);
+                }
                 break;
             case R.id.RRP:
-                prefArray[13] = checked;
+                if(TBEV)
+                {
+                    prefArray[13] = checked;
+                }
+                else
+                {
+                    RRP.setChecked(false);
+                    makeToast("You need the Big Expansion to play with Rough Roads", 0);
+                }
                 break;
             case R.id.EMP:
-                prefArray[14] = checked;
+                if(TBEV)
+                {
+                    prefArray[14] = checked;
+                }
+                else
+                {
+                    EMP.setChecked(false);
+                    makeToast("You need the Big Expansion to play with Evil Machinations", 0);
+                }
                 break;
             case R.id.TBEP:
-                prefArray[15] = checked;
+                if(TBEV)
+                {
+                    prefArray[15] = checked;
+                }
+                else
+                {
+                    TPET.setChecked(false);
+                    makeToast("You need the Big Expansion to play with the Big Expansion tiles and cards", 0);
+                }
                 break;
             case R.id.ABEP:
-                prefArray[16] = checked;
+                if(ABEV)
+                {
+                    prefArray[16] = checked;
+                }
+                else
+                {
+                    APET.setChecked(false);
+                    makeToast("You need the Another Big Expansion with the Another Big Expansion tiles and cards", 0);
+                }
                 break;
             case R.id.STP:
-                prefArray[17] = checked;
+                if(ABEV)
+                {
+                    prefArray[17] = checked;
+                }
+                else
+                {
+                    SCP.setChecked(false);
+                    makeToast("You need the Another Big Expansion to play with the Support Team", 0);
+                }
                 break;
             case R.id.MP:
-                prefArray[18] = checked;
+                if(MV)
+                {
+                    prefArray[18] = checked;
+                }
+                else
+                {
+                    MP.setChecked(false);
+                    makeToast("You need the Missions Expansion to play with Missions", 0);
+                }
                 break;
 
         }
@@ -589,20 +758,20 @@ public class MainActivity extends AppCompatActivity {
             closeHelp.setOnClickListener(chl);
             TextView textView = (TextView) findViewById(R.id.Helpy);
             String output ="";
-            output +="ABOUT THE RANDOMIZER\nThe randomize will pick randomly pick boards and extras for you to play with. (Extras are Rough Roads, Evil Mechanions, " +
-                    "missions, etc.) All you need to do is is select all the expansions you own, tell the app how many rounds you want to do, and " +
-                    "how many extras you want, and press the RANDOMIZE button. The two selecters, Rounds and Extras maximum is set to the maxium round/" +
+            output +="ABOUT THE RANDOMIZER\nThe randomizer will randomly pick the boards and extras to play with. (Extras are Rough Roads, Evil Machinations, " +
+                    "Missions, etc.) Select all the expansions you own, how many rounds you want to do, " +
+                    "how many extras you want, and press the RANDOMIZE button. The maximum for the two selectors (Rounds and Extras) is set to the maximum round/" +
                     "extras you can do with the expansions selected.\n\nSMART SELECTION\n If you select the Smart selection button, the " +
-                    "randomize will alway choose a I,II,III and a IV.If you choose only one round, it will do a I, II, and a III. If you choose only" +
-                    " two rounds, it will choose I and a II, and so on. If you do not have Latest Models or the Another Big Expasion, it will not " +
-                    "choose a IV. If you choose five rounds, it will choose one of the uninsurable ship. (IA, IC, IIA, IIB, ect.)\n\nMORE THAN ONE" +
-                    " ROUGH ROAD\nThe randomizer will also pick how many Rough Roads for you to do each round. If you want to have more than one " +
-                    "Rough Road, check the More than one Rough Roads box. You will have a maximum of ten Rough Roads\n\nSUPPORT CREW\nThe Support Crew Box" +
-                    "adds the support crew as an extra. If you don't want the randomizer to count the Support Crew as an extra, uncheck the box, if you " +
-                    "do, check the box.\n\nPREFERENCES \nIf you click on the preference button, it will take you to a screen where " +
-                    "there will be a list of all of the boards and extras the app will randomize. If you want the app to random a board, " +
-                    "for example, you want the randomizer to be able to pick board IIA, you would check the Board IIA checkbox." +
-                    "If you don't wnat a board/extra, for example, you rellay don't like Evil Machinations, if you uncheck the box, " +
+                    "randomizer will always choose a I,II,III and a IV.  If you choose only one round, it will do a I. If you choose " +
+                    " two rounds, it will choose I and a II, and so on. If you do not have Latest Models or the Another Big Expansion, it will not " +
+                    "choose a IV. If you choose five or more rounds, it will choose one of the uninsurable ship. (IA, IC, IIA, IIB, ect.)\n\nMORE THAN ONE" +
+                    " ROUGH ROAD\nThe randomizer can pick how many Rough Roads for you to do each round. Checking this box enables the randomizer to select more than one " +
+                    "Rough Road (up to a maximum of ten Rough Roads)\n\nSUPPORT TEAM\nChecking this box " +
+                    "enables the randomizer to include the Support Team abilities as an extra. If you don't want the randomizer to include the Support Team abilities as an extra, uncheck the box." +
+                    "\n\nPREFERENCES \nThe preferences button presents " +
+                    "a list of all of the boards and extras the app will randomize. Selecting a Board/Extra will allow that option to , " +
+                    "be included in the randomizer.  Unchecking an option will prevent that option from being selected.  For example, to include board IIA as an option, you would check the Board IIA checkbox." +
+                    "Similiarly, if you really don't like Evil Machinations, uncheck the box, and " +
                     "the randomizer will never pick Evil Machinations. \n\n\nHave Fun!!!";
             textView.setText(output);
             textView.setMovementMethod(new ScrollingMovementMethod());
@@ -665,41 +834,8 @@ public class MainActivity extends AppCompatActivity {
     }
     private class preference implements View.OnClickListener{
         public void onClick(View v) {
-            SharedPreferences preferences2 = getApplicationContext().getSharedPreferences("Trucker", android.content.Context.MODE_PRIVATE);
-            SharedPreferences.Editor editor = preferences2.edit();
-            editor.putBoolean("BSV", BSV);
-            editor.putBoolean("TBEV",TBEV);
-            editor.putBoolean("ABEV",ABEV);
-            editor.putBoolean("MV",MV);
-            editor.putBoolean("LMV",LMV);
-            editor.putBoolean("Smart",Smart);
-            editor.putBoolean("MTORRV",MTORRV);
-            editor.putBoolean("SCV",SCV);
-
-            editor.apply();
-
             setContentView(R.layout.preference2);
-
-            SharedPreferences preferences = getApplicationContext().getSharedPreferences("Trucker", android.content.Context.MODE_PRIVATE);
-            prefArray[0] = preferences.getBoolean("I", false);
-            prefArray[1] = preferences.getBoolean("IA", false);
-            prefArray[2] = preferences.getBoolean("IC", false);
-            prefArray[3] = preferences.getBoolean("II", false);
-            prefArray[4] = preferences.getBoolean("IIA", false);
-            prefArray[5] = preferences.getBoolean("IIB", false);
-            prefArray[6] = preferences.getBoolean("IIC", false);
-            prefArray[7] = preferences.getBoolean("III", false);
-            prefArray[8] = preferences.getBoolean("IIIA", false);
-            prefArray[9] = preferences.getBoolean("IIIB", false);
-            prefArray[10] = preferences.getBoolean("IIIC", false);
-            prefArray[11] = preferences.getBoolean("IV", false);
-            prefArray[12] = preferences.getBoolean("IVC", false);
-            prefArray[13] = preferences.getBoolean("RR", false);
-            prefArray[14] = preferences.getBoolean("EM", false);
-            prefArray[15] = preferences.getBoolean("TBET", false);
-            prefArray[16] = preferences.getBoolean("ABET", false);
-            prefArray[17] = preferences.getBoolean("ST", false);
-            prefArray[18] = preferences.getBoolean("M", false);
+            setPref();
 
             CheckBox I = (CheckBox) findViewById(R.id.BOARDI);
             CheckBox IA = (CheckBox) findViewById(R.id.BOARDIA);
@@ -745,6 +881,21 @@ public class MainActivity extends AppCompatActivity {
             SettingsListener sl3 = new SettingsListener();
             buttonClose.setOnClickListener(sl3);
 
+            Button SelectAll = (Button) findViewById(R.id.allS);
+            allListen al = new allListen();
+            SelectAll.setOnClickListener(al);
+            if(isChecked())
+            {
+               CharSequence BELLO ="DE-SELECT ALL";
+                SelectAll.setText(BELLO);
+            }
+            else
+            {
+                CharSequence BELLO ="SELECT ALL";
+                SelectAll.setText(BELLO);
+            }
+
+
         }
     }
     private int decreaseRounds(boolean[] prefArray2){
@@ -773,5 +924,221 @@ public class MainActivity extends AppCompatActivity {
         if (!prefArray2[17]&&ABEV){amountReturn+=1;}
         if (!prefArray2[18]&&MV){amountReturn+=1;}
         return amountReturn;
+    }
+    private class allListen implements View.OnClickListener{
+        @Override
+        public void onClick(View v) {
+            if(isChecked())
+            {
+                prefArray = loadArray(prefArray,false);
+
+                CheckBox I = (CheckBox) findViewById(R.id.BOARDI);
+                CheckBox IA = (CheckBox) findViewById(R.id.BOARDIA);
+                CheckBox IC = (CheckBox) findViewById(R.id.BOARDIC);
+                CheckBox II = (CheckBox) findViewById(R.id.BOARDII);
+                CheckBox IIA = (CheckBox) findViewById(R.id.BOARDIIA);
+                CheckBox IIB = (CheckBox) findViewById(R.id.BOARDIIB);
+                CheckBox IIC = (CheckBox) findViewById(R.id.BOARDIIC);
+                CheckBox III = (CheckBox) findViewById(R.id.BOARDIII);
+                CheckBox IIIA = (CheckBox) findViewById(R.id.BOARDIIIA);
+                CheckBox IIIB = (CheckBox) findViewById(R.id.BOARDIIIB);
+                CheckBox IIIC = (CheckBox) findViewById(R.id.BOARDIIIC);
+                CheckBox IV = (CheckBox) findViewById(R.id.BOARDIV);
+                CheckBox IVC = (CheckBox) findViewById(R.id.BOARDIVC);
+                CheckBox RRP = (CheckBox) findViewById(R.id.RRP);
+                CheckBox EMP = (CheckBox) findViewById(R.id.EMP);
+                CheckBox SCP = (CheckBox) findViewById(R.id.STP);
+                CheckBox APET = (CheckBox) findViewById(R.id.ABEP);
+                CheckBox TPET = (CheckBox) findViewById(R.id.TBEP);
+                CheckBox MP = (CheckBox) findViewById(R.id.MP);
+
+                I.setChecked(prefArray[0]);
+                IA.setChecked(prefArray[1]);
+                IC.setChecked(prefArray[2]);
+                II.setChecked(prefArray[3]);
+                IIA.setChecked(prefArray[4]);
+                IIB.setChecked(prefArray[5]);
+                IIC.setChecked(prefArray[6]);
+                III.setChecked(prefArray[7]);
+                IIIA.setChecked(prefArray[8]);
+                IIIB.setChecked(prefArray[9]);
+                IIIC.setChecked(prefArray[10]);
+                IV.setChecked(prefArray[11]);
+                IVC.setChecked(prefArray[12]);
+                RRP.setChecked(prefArray[13]);
+                EMP.setChecked(prefArray[14]);
+                TPET.setChecked(prefArray[15]);
+                APET.setChecked(prefArray[16]);
+                SCP.setChecked(prefArray[17]);
+                MP.setChecked(prefArray[18]);
+                Button SelectAll = (Button) findViewById(R.id.allS);
+                CharSequence BELLO ="SELECT ALL";
+                SelectAll.setText(BELLO);
+            }
+            else {
+                prefArray = loadArray(prefArray, true);
+
+                if (!BSV) {
+                    prefArray[0] = false;
+                    prefArray[3] = false;
+                    prefArray[7] = false;
+                    prefArray[8] = false;
+                }
+                if (!TBEV) {
+                    prefArray[1] = false;
+                    prefArray[4] = false;
+                    prefArray[13] = false;
+                    prefArray[14] = false;
+                    prefArray[15] = false;
+                }
+                if (!ABEV) {
+                    prefArray[5] = false;
+                    prefArray[9] = false;
+                    prefArray[11] = false;
+                    prefArray[16] = false;
+                    prefArray[17] = false;
+                }
+                if (!LMV) {
+                    prefArray[2] = false;
+                    prefArray[6] = false;
+                    prefArray[10] = false;
+                    prefArray[12] = false;
+                }
+                if (!MV) {
+                    prefArray[18] = false;
+                }
+                CheckBox I = (CheckBox) findViewById(R.id.BOARDI);
+                CheckBox IA = (CheckBox) findViewById(R.id.BOARDIA);
+                CheckBox IC = (CheckBox) findViewById(R.id.BOARDIC);
+                CheckBox II = (CheckBox) findViewById(R.id.BOARDII);
+                CheckBox IIA = (CheckBox) findViewById(R.id.BOARDIIA);
+                CheckBox IIB = (CheckBox) findViewById(R.id.BOARDIIB);
+                CheckBox IIC = (CheckBox) findViewById(R.id.BOARDIIC);
+                CheckBox III = (CheckBox) findViewById(R.id.BOARDIII);
+                CheckBox IIIA = (CheckBox) findViewById(R.id.BOARDIIIA);
+                CheckBox IIIB = (CheckBox) findViewById(R.id.BOARDIIIB);
+                CheckBox IIIC = (CheckBox) findViewById(R.id.BOARDIIIC);
+                CheckBox IV = (CheckBox) findViewById(R.id.BOARDIV);
+                CheckBox IVC = (CheckBox) findViewById(R.id.BOARDIVC);
+                CheckBox RRP = (CheckBox) findViewById(R.id.RRP);
+                CheckBox EMP = (CheckBox) findViewById(R.id.EMP);
+                CheckBox SCP = (CheckBox) findViewById(R.id.STP);
+                CheckBox APET = (CheckBox) findViewById(R.id.ABEP);
+                CheckBox TPET = (CheckBox) findViewById(R.id.TBEP);
+                CheckBox MP = (CheckBox) findViewById(R.id.MP);
+
+                I.setChecked(prefArray[0]);
+                IA.setChecked(prefArray[1]);
+                IC.setChecked(prefArray[2]);
+                II.setChecked(prefArray[3]);
+                IIA.setChecked(prefArray[4]);
+                IIB.setChecked(prefArray[5]);
+                IIC.setChecked(prefArray[6]);
+                III.setChecked(prefArray[7]);
+                IIIA.setChecked(prefArray[8]);
+                IIIB.setChecked(prefArray[9]);
+                IIIC.setChecked(prefArray[10]);
+                IV.setChecked(prefArray[11]);
+                IVC.setChecked(prefArray[12]);
+                RRP.setChecked(prefArray[13]);
+                EMP.setChecked(prefArray[14]);
+                TPET.setChecked(prefArray[15]);
+                APET.setChecked(prefArray[16]);
+                SCP.setChecked(prefArray[17]);
+                MP.setChecked(prefArray[18]);
+
+                Button SelectAll = (Button) findViewById(R.id.allS);
+                CharSequence BELLO = "DE-SELECT ALL";
+                SelectAll.setText(BELLO);
+            }
+        }
+    }
+    private boolean isChecked () {
+        boolean returnValue;
+        boolean[] yesNoArray = new boolean[5];
+        yesNoArray[0] = !BSV || (prefArray[0] && prefArray[3] && prefArray[7] && prefArray[8]);
+        yesNoArray[1] = !TBEV || (prefArray[1] && prefArray[4] && prefArray[13] && prefArray[14] && prefArray[15]);
+        yesNoArray[2] = !ABEV || (prefArray[5] && prefArray[9] && prefArray[11] && prefArray[16] && prefArray[17]);
+        yesNoArray[3] = !LMV || (prefArray[2] && prefArray[6] && prefArray[10] && prefArray[12]);
+        yesNoArray[4] = !ABEV || (prefArray[18]);
+        returnValue = (yesNoArray[0]&&yesNoArray[1]&&yesNoArray[2]&&yesNoArray[3]&&yesNoArray[4]);
+        return returnValue;
+    }
+    private void setPref(){
+        SharedPreferences preferences2 = getApplicationContext().getSharedPreferences("Trucker", android.content.Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences2.edit();
+        editor.putBoolean("BSV", BSV);
+        editor.putBoolean("TBEV",TBEV);
+        editor.putBoolean("ABEV",ABEV);
+        editor.putBoolean("MV",MV);
+        editor.putBoolean("LMV",LMV);
+        editor.putBoolean("Smart",Smart);
+        editor.putBoolean("MTORRV",MTORRV);
+        editor.putBoolean("SCV",SCV);
+
+        editor.apply();
+
+        SharedPreferences preferences = getApplicationContext().getSharedPreferences("Trucker", android.content.Context.MODE_PRIVATE);
+        prefArray[0] = preferences.getBoolean("I", false);
+        prefArray[1] = preferences.getBoolean("IA", false);
+        prefArray[2] = preferences.getBoolean("IC", false);
+        prefArray[3] = preferences.getBoolean("II", false);
+        prefArray[4] = preferences.getBoolean("IIA", false);
+        prefArray[5] = preferences.getBoolean("IIB", false);
+        prefArray[6] = preferences.getBoolean("IIC", false);
+        prefArray[7] = preferences.getBoolean("III", false);
+        prefArray[8] = preferences.getBoolean("IIIA", false);
+        prefArray[9] = preferences.getBoolean("IIIB", false);
+        prefArray[10] = preferences.getBoolean("IIIC", false);
+        prefArray[11] = preferences.getBoolean("IV", false);
+        prefArray[12] = preferences.getBoolean("IVC", false);
+        prefArray[13] = preferences.getBoolean("RR", false);
+        prefArray[14] = preferences.getBoolean("EM", false);
+        prefArray[15] = preferences.getBoolean("TBET", false);
+        prefArray[16] = preferences.getBoolean("ABET", false);
+        prefArray[17] = preferences.getBoolean("ST", false);
+        prefArray[18] = preferences.getBoolean("M", false);
+
+        if(!BSV)
+        {
+            prefArray[0] = false;
+            prefArray[3] = false;
+            prefArray[7] = false;
+            prefArray[8] = false;
+        }
+        if(!TBEV)
+        {
+            prefArray[1] = false;
+            prefArray[4] = false;
+            prefArray[13] = false;
+            prefArray[14] = false;
+            prefArray[15] = false;
+        }
+        if(!ABEV)
+        {
+            prefArray[5] = false;
+            prefArray[9] = false;
+            prefArray[11] = false;
+            prefArray[16] = false;
+            prefArray[17] = false;
+        }
+        if(!LMV)
+        {
+            prefArray[2] = false;
+            prefArray[6] = false;
+            prefArray[10] = false;
+            prefArray[12] = false;
+        }
+        if(!MV)
+        {
+            prefArray[18] = false;
+        }
+    }
+    private boolean[] loadArray(boolean[] toLoad, boolean TF){
+        for(int i = 0; i < toLoad.length; i++)
+        {
+            toLoad[i] = TF;
+        }
+        return toLoad;
     }
 }
