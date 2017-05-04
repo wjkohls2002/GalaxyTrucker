@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.toast.galaxy"
-    android:versionName="1.0.0.0"
-    android:versionCode="1">
+    >
 
 
     <application
@@ -13,6 +12,7 @@
         android:roundIcon="@mipmap/icong"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar"
+        android:fullBackupContent="true"
 
         android:background="#000">
 
@@ -23,6 +23,20 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
+                <!-- STUFF-->
+                    <action android:name="android.intent.action.VIEW" />
+                    <category android:name="android.intent.category.DEFAULT" />
+                    <category android:name="android.intent.category.BROWSABLE" />
+                    <!-- Accepts URIs that begin with "http://www.example.com/gizmos” -->
+                    <data android:scheme="http"
+                        android:host="www.legogospelworks.yolasite.com"
+                        android:pathPrefix="/galaxy trucker" />
+                    <!-- note that the leading "/" is required for pathPrefix-->
+                    <!-- Accepts URIs that begin with "example://gizmos” -->
+                    <data android:scheme="example"
+                        android:host="gizmos" />
+
+
             </intent-filter>
         </activity>
         <activity
