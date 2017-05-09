@@ -51,6 +51,9 @@ public class MainActivity extends AppCompatActivity {
 
     public static boolean[] prefArray = new boolean[19];
 
+    //   OTHER
+
+
 //--------{PROGRAM}-------------------------------------------------------------------------------------------------------------------
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -236,12 +239,12 @@ public class MainActivity extends AppCompatActivity {
         SmartArray[2] = ((prefArray[7] || prefArray[8] || prefArray[9] || prefArray[10]) && rounds >= 3);
         SmartArray[3] = ((prefArray[11] || prefArray[12]) && rounds >= 4);
 
-        SmartArray2[0] = !SmartArray[0] || (contains(boardsArray, 0) || contains(boardsArray, 1) || contains(boardsArray, 2));
-        SmartArray2[1] = !SmartArray[1] || (contains(boardsArray, 3) || contains(boardsArray, 4) || contains(boardsArray, 5)
-                || contains(boardsArray, 6));
-        SmartArray2[2] = !SmartArray[2] || (contains(boardsArray, 7) || contains(boardsArray, 8) || contains(boardsArray, 9)
-                || contains(boardsArray, 10));
-        SmartArray2[3] = !SmartArray[3] || (contains(boardsArray, 11) || contains(boardsArray, 12));
+        SmartArray2[0] = !SmartArray[0] || (contains(boardsArray, 1) || contains(boardsArray, 2) || contains(boardsArray, 3));
+        SmartArray2[1] = !SmartArray[1] || (contains(boardsArray, 4) || contains(boardsArray, 5) || contains(boardsArray, 6)
+                || contains(boardsArray, 7));
+        SmartArray2[2] = !SmartArray[2] || (contains(boardsArray, 8) || contains(boardsArray, 9) || contains(boardsArray, 10)
+                || contains(boardsArray, 11));
+        SmartArray2[3] = !SmartArray[3] || (contains(boardsArray, 12) || contains(boardsArray, 13));
 
         return (SmartArray2[0] && SmartArray2[1] && SmartArray2[2] && SmartArray2[3]);
     }
@@ -368,19 +371,19 @@ public class MainActivity extends AppCompatActivity {
     private String display(int[] boardsArray){
         String boardsS ="";
         try {
-            if(contains(boardsArray,0)){boardsS += "I\n";}
-            if(contains(boardsArray,1)){boardsS += "I A\n";}
-            if(contains(boardsArray,2)){boardsS += "I C\n";}
-            if(contains(boardsArray,3)){boardsS += "II\n";}
-            if(contains(boardsArray,4)){boardsS += "II A\n";}
-            if(contains(boardsArray,5)){boardsS += "II B\n";}
-            if(contains(boardsArray,6)){boardsS += "II C\n";}
-            if(contains(boardsArray,7)){boardsS += "III \n";}
-            if(contains(boardsArray,8)){boardsS += "III A\n";}
-            if(contains(boardsArray,9)){boardsS += "III B\n";}
-            if(contains(boardsArray,10)){boardsS += "III C\n";}
-            if(contains(boardsArray,11)){boardsS += "IV \n";}
-            if(contains(boardsArray,12)){boardsS += "IV C\n";}
+            if(contains(boardsArray,1)){boardsS += "I\n";}
+            if(contains(boardsArray,2)){boardsS += "I A\n";}
+            if(contains(boardsArray,3)){boardsS += "I C\n";}
+            if(contains(boardsArray,4)){boardsS += "II\n";}
+            if(contains(boardsArray,5)){boardsS += "II A\n";}
+            if(contains(boardsArray,6)){boardsS += "II B\n";}
+            if(contains(boardsArray,7)){boardsS += "II C\n";}
+            if(contains(boardsArray,8)){boardsS += "III \n";}
+            if(contains(boardsArray,9)){boardsS += "III A\n";}
+            if(contains(boardsArray,10)){boardsS += "III B\n";}
+            if(contains(boardsArray,11)){boardsS += "III C\n";}
+            if(contains(boardsArray,12)){boardsS += "IV \n";}
+            if(contains(boardsArray,13)){boardsS += "IV C\n";}
 
         } catch (Exception e) {
             String out = e.toString();
