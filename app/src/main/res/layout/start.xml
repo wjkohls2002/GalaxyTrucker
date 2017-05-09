@@ -16,7 +16,7 @@
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="All content is a © and a trademark of Czech Games Edition and Rio Grande Games.\n\n\n\n     Loading. . . \n\n1.0.0.1"
+        android:text="All content is a © and a trademark of Czech Games Edition and Rio Grande Games.\n\n\n\n     Loading. . . \n\n1.0.2"
         android:textAlignment="center"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
