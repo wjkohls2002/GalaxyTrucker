@@ -32,7 +32,8 @@ public class MainActivity extends AppCompatActivity {
     public TextView boardText;
     public TextView extratext;
 
-//   VARIABLES
+    //   VARIABLES
+    //    boolean
     public static boolean TBEV= false;
     public static boolean ABEV= false;
     public static boolean LMV= false;
@@ -42,18 +43,17 @@ public class MainActivity extends AppCompatActivity {
     public static boolean BSV = false;
     public static boolean Smart = false;
 
+    //       int
     public static int roundsS = 0;
     public static int extrasS= 0;
-
     public static int numOfRounds = 0;
     public static int extraCount = 0;
     public static int numOfExtras = 0;
 
+    //     Stings
+    public static String view = "";
+
     public static boolean[] prefArray = new boolean[19];
-
-    //   OTHER
-
-
 //--------{PROGRAM}-------------------------------------------------------------------------------------------------------------------
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
         // Declarations
 
         setContentView(R.layout.activity_main);
+        view = "main";
         rounds = (SeekBar) findViewById(R.id.rounds);
         extras = (SeekBar) findViewById(R.id.extras);
 
@@ -138,6 +139,7 @@ public class MainActivity extends AppCompatActivity {
 
         //  Components
         setContentView(R.layout.radomized);
+        view = "randomized";
         restart = (Button) findViewById(R.id.restart);
         randomButton rbl = new randomButton();
         restart.setOnClickListener(rbl);
@@ -234,10 +236,10 @@ public class MainActivity extends AppCompatActivity {
     private boolean isSmart(int[] boardsArray, int rounds) {
         boolean[] SmartArray = new boolean[4];
         boolean[] SmartArray2 = new boolean[4];
-        SmartArray[0] = ((prefArray[0] || prefArray[1] || prefArray[2]) && rounds >= 1);
-        SmartArray[1] = ((prefArray[3] || prefArray[4] || prefArray[5] || prefArray[6]) && rounds >= 2);
-        SmartArray[2] = ((prefArray[7] || prefArray[8] || prefArray[9] || prefArray[10]) && rounds >= 3);
-        SmartArray[3] = ((prefArray[11] || prefArray[12]) && rounds >= 4);
+        SmartArray[0] = ((prefArray[0] || prefArray[1] || prefArray[2]) && (rounds >= 1));
+        SmartArray[1] = ((prefArray[3] || prefArray[4] || prefArray[5] || prefArray[6]) && (rounds >= 2||!SmartArray[0]));
+        SmartArray[2] = ((prefArray[7] || prefArray[8] || prefArray[9] || prefArray[10]) && ((rounds >= 3||!SmartArray[0])||(!SmartArray[1])&&rounds>=2));
+        SmartArray[3] = ((prefArray[11] || prefArray[12]) && ((rounds >= 4||!SmartArray[0])||(!SmartArray[1]&&rounds>=3)||(!SmartArray[2]&&rounds>=3)));
 
         SmartArray2[0] = !SmartArray[0] || (contains(boardsArray, 1) || contains(boardsArray, 2) || contains(boardsArray, 3));
         SmartArray2[1] = !SmartArray[1] || (contains(boardsArray, 4) || contains(boardsArray, 5) || contains(boardsArray, 6)
@@ -443,6 +445,7 @@ public class MainActivity extends AppCompatActivity {
         public void onClick(View v)
         {
             setContentView(R.layout.settings);
+            view = "settings";
 
             CheckBox baseSet = (CheckBox) findViewById(R.id.BS);
             CheckBox bigE = (CheckBox) findViewById(R.id.TBE);
@@ -515,28 +518,31 @@ public class MainActivity extends AppCompatActivity {
         public void onClick(View v) {
 
             setContentView(R.layout.help);
+            view = "help";
             Button closeHelp = (Button) findViewById(R.id.closeHelp);
             SettingsListener chl = new SettingsListener();
             closeHelp.setOnClickListener(chl);
             TextView textView = (TextView) findViewById(R.id.Helpy);
             String output ="";
-            output +="ABOUT THE RANDOMIZER\nThe randomizer will randomly pick the boards and extras to play with. (Extras are Rough Roads, Evil Machinations, " +
-                    "Missions, etc.) Select all the expansions you own, how many rounds you want to do, " +
-                    "how many extras you want, and press the RANDOMIZE button. The maximum for the two selectors (Rounds and Extras) is set to the maximum round/" +
-                    "extras you can do with the expansions selected.\n\nSMART SELECTION\n If you select the Smart selection button, the " +
-                    "randomizer will always choose a I,II,III and a IV.  If you choose only one round, it will do a I. If you choose " +
+            output +="ABOUT THE RANDOMIZER\nThe randomizer will randomly pick the boards and extras to play with. " +
+                    "(Extras are Rough Roads, Evil Machinations, Missions, etc.) Select all the expansions you own, how many rounds you want to do, " +
+                    "how many extras you want, and press the RANDOMIZE button. The maximum for the two selectors (Rounds and Extras) is set " +
+                    "to the maximum round/extras you can do with the expansions selected.\n\nSMART SELECTION\n If you select the Smart selection" +
+                    " button, the randomizer will always choose a I,II,III and a IV.  If you choose only one round, it will do a I. If you choose " +
                     " two rounds, it will choose I and a II, and so on. If you do not have Latest Models or the Another Big Expansion, it will not " +
-                    "choose a IV. If you choose five or more rounds, it will choose one of the uninsurable ship. (IA, IC, IIA, IIB, ect.)\n\nMORE THAN ONE" +
-                    " ROUGH ROAD\nThe randomizer can pick how many Rough Roads for you to do each round. Checking this box enables the randomizer to select more than one " +
-                    "Rough Road (up to a maximum of ten Rough Roads)\n\nSUPPORT TEAM\nChecking this box " +
-                    "enables the randomizer to include the Support Team abilities as an extra. If you don't want the randomizer to include the Support Team abilities as an extra, uncheck the box." +
-                    "\n\nPREFERENCES \nThe preferences button presents " +
+                    "choose a IV. If you choose five or more rounds, it will choose one of the uninsurable ship. (IA, IC, IIA, IIB, ect.)" +
+                    "\n\nMORE THAN ONE ROUGH ROAD\nThe randomizer can pick how many Rough Roads for you to do each round. Checking this box enables " +
+                    "the randomizer to select more than one Rough Road (up to a maximum of ten Rough Roads)\n\nSUPPORT TEAM\nChecking this box " +
+                    "enables the randomizer to include the Support Team abilities as an extra. If you don't want the randomizer to include the" +
+                    " Support Team abilities as an extra, uncheck the box.\n\nPREFERENCES \nThe preferences button presents " +
                     "a list of all of the boards and extras the app will randomize. Selecting a Board/Extra will allow that option to , " +
-                    "be included in the randomizer.  Unchecking an option will prevent that option from being selected.  For example, to include board IIA as an option, you would check the Board IIA checkbox." +
-                    "Similiarly, if you really don't like Evil Machinations, uncheck the box, and " +
-                    "the randomizer will never pick Evil Machinations. \n\n\nHave Fun!!!";
+                    "be included in the randomizer.  Unchecking an option will prevent that option from being selected.  For example," +
+                    " to include board IIA as an option, you would check the Board IIA checkbox. Similiarly, if you really don't like Evil" +
+                    " Machinations, uncheck the box, and the randomizer will never pick Evil Machinations. \n\nUSING THE BACK BUTTON\nPressing " +
+                    "the back button on any screen will go to the prevous page you were on. If you press the back button while on the Home page, " +
+                    "the app will close. Pressing the back button while on the Settings page, none of the changes you made will be saved. " +
+                    "If you are on the Preference page, it will save the changes you make.\n\n\nHave Fun!!!\n\n";
             textView.setText(output);
-            textView.setMovementMethod(new ScrollingMovementMethod());
         }
     }
     private class randomButton implements  View.OnClickListener {
@@ -547,6 +553,7 @@ public class MainActivity extends AppCompatActivity {
             if (v.getId() == R.id.restart)
             {
                 setContentView(R.layout.activity_main);
+                view = "main";
                 main();
             }
         }
@@ -554,6 +561,7 @@ public class MainActivity extends AppCompatActivity {
     private class preference implements View.OnClickListener{
         public void onClick(View v) {
             setContentView(R.layout.preference2);
+            view = "preference2";
             setPref();
 
             CheckBox I = (CheckBox) findViewById(R.id.BOARDI);
@@ -772,6 +780,7 @@ public class MainActivity extends AppCompatActivity {
                 editor.apply();
 
                 setContentView(R.layout.activity_main);
+                view = "main";
                 main();
             }
         }
@@ -1092,5 +1101,98 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
         }
+        Button SelectAll = (Button) findViewById(R.id.allS);
+        if(isChecked())
+        {
+            CharSequence BELLO ="DE-SELECT ALL";
+            SelectAll.setText(BELLO);
+        }
+        else
+        {
+            CharSequence BELLO ="SELECT ALL";
+            SelectAll.setText(BELLO);
+        }
+    }
+
+    //    STUFF TO DO WITH THE BACK BUTTON
+    public void onBackPressed() {
+        if(view.equalsIgnoreCase("main")){
+            System.exit(0);
+        }else if(view.equalsIgnoreCase("settings")){
+            main();
+        }else if(view.equalsIgnoreCase("randomized")) {
+            main();
+        }else if(view.equalsIgnoreCase("help")||view.equalsIgnoreCase("preference2")) {
+            machSettings();
+        }
+    }
+    public void machSettings(){
+        setContentView(R.layout.settings);
+        view = "settings";
+
+        CheckBox baseSet = (CheckBox) findViewById(R.id.BS);
+        CheckBox bigE = (CheckBox) findViewById(R.id.TBE);
+        CheckBox aBigE = (CheckBox) findViewById(R.id.ABE);
+        CheckBox latestModel = (CheckBox) findViewById(R.id.LM);
+        CheckBox missions = (CheckBox) findViewById(R.id.Missions);
+        CheckBox crew = (CheckBox) findViewById(R.id.SC);
+        CheckBox RR = (CheckBox) findViewById(R.id.RR);
+        CheckBox smartS = (CheckBox) findViewById(R.id.Smart);
+
+        SharedPreferences preferences = getApplicationContext().getSharedPreferences("Trucker", android.content.Context.MODE_PRIVATE);
+        BSV = preferences.getBoolean("BSV", true);
+        TBEV = preferences.getBoolean("TBEV", false);
+        ABEV = preferences.getBoolean("ABEV", false);
+        LMV = preferences.getBoolean("LMV", false);
+        MV = preferences.getBoolean("MV", false);
+        SCV = preferences.getBoolean("SCV", false);
+        MTORRV= preferences.getBoolean("MTORRV", false);
+        Smart = preferences.getBoolean("Smart", true);
+
+
+        baseSet.setChecked(BSV);
+        bigE.setChecked(TBEV);
+        aBigE.setChecked(ABEV);
+        latestModel.setChecked(LMV);
+        missions.setChecked(MV);
+        crew.setChecked(SCV);
+        RR.setChecked(MTORRV);
+        smartS.setChecked(Smart);
+
+        numOfRounds = 0;
+        Close2 = (Button) findViewById(R.id.Close);
+        listenForButton lfb3 = new listenForButton();
+        Close2.setOnClickListener(lfb3);
+        Button Help = (Button) findViewById(R.id.HELP);
+        listenForACryOfHelp lfacoh = new listenForACryOfHelp();
+        Help.setOnClickListener(lfacoh);
+
+        Button pref = (Button) findViewById(R.id.pref);
+        preference prefl = new preference();
+        pref.setOnClickListener(prefl);
+
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putBoolean("I", prefArray[0]);
+        editor.putBoolean("IA",prefArray[1]);
+        editor.putBoolean("IC",prefArray[2]);
+        editor.putBoolean("II",prefArray[3]);
+        editor.putBoolean("IIA",prefArray[4]);
+        editor.putBoolean("IIB",prefArray[5]);
+        editor.putBoolean("IIC",prefArray[6]);
+        editor.putBoolean("III",prefArray[7]);
+        editor.putBoolean("IIIA", prefArray[8]);
+        editor.putBoolean("IIIB",prefArray[9]);
+        editor.putBoolean("IIIC",prefArray[10]);
+        editor.putBoolean("IV",prefArray[11]);
+        editor.putBoolean("IVC",prefArray[12]);
+        editor.putBoolean("RR",prefArray[13]);
+        editor.putBoolean("EM",prefArray[14]);
+        editor.putBoolean("TBET",prefArray[15]);
+        editor.putBoolean("ABET", prefArray[16]);
+        editor.putBoolean("ST",prefArray[17]);
+        editor.putBoolean("M",prefArray[18]);
+        editor.apply();
+
+
     }
 }
