@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -13,8 +12,6 @@ import android.widget.ImageButton;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
-
-
 
 public class MainActivity extends AppCompatActivity {
 
@@ -43,12 +40,12 @@ public class MainActivity extends AppCompatActivity {
     public static boolean BSV = false;
     public static boolean Smart = false;
 
-    //       int
-    public static int roundsS = 0;
-    public static int extrasS= 0;
-    public static int numOfRounds = 0;
-    public static int extraCount = 0;
-    public static int numOfExtras = 0;
+    //       shorts
+    public static short roundsS = 0;
+    public static short extrasS= 0;
+    public static short numOfRounds = 0;
+    public static short extraCount = 0;
+    public static short numOfExtras = 0;
 
     //     Stings
     public static String view = "";
@@ -91,8 +88,8 @@ public class MainActivity extends AppCompatActivity {
         SCV = preferences.getBoolean("SCV", false);
         MTORRV= preferences.getBoolean("MTORRV", false);
         Smart = preferences.getBoolean("Smart", true);
-        roundsS = preferences.getInt("rounds", 3);
-        extrasS = preferences.getInt("extras", 0);
+        roundsS = (short) preferences.getInt("rounds", 3);
+        extrasS = (short) preferences.getInt("extras", 0);
 
         prefArray[0] = preferences.getBoolean("I", true);
         prefArray[1] = preferences.getBoolean("IA", false);
@@ -151,26 +148,26 @@ public class MainActivity extends AppCompatActivity {
         // Varible
         boolean OK;
         boolean SmartGood;
-        int choice;
-        int rounds;
-        int[] boardsArray = new int[numOfRounds];
+        short choice;
+        short rounds;
+        short[] boardsArray = new short[numOfRounds];
         boolean[] doneYet = new boolean[15];
         String boardsS;
 
         //   Program
         do {
-            for (int hello = 0; hello < boardsArray.length; hello++){boardsArray[hello] = 0;}
-            for (int hello = 0; hello < doneYet.length; hello++) {doneYet[hello] = false;}
+            for (short hello = 0; hello < boardsArray.length; hello++){boardsArray[hello] = 0;}
+            for (short hello = 0; hello < doneYet.length; hello++) {doneYet[hello] = false;}
             if (!ABEV && !LMV && (numOfRounds == 1)) {
                 boardsArray[0] = 1;
                 SmartGood = true;
             }
             else
             {
-                for (int count = 0; count < numOfRounds; count++)
+                for (short count = 0; count < numOfRounds; count++)
                 {
                     do {
-                        choice = (int) ((Math.random() * 13) + 1);
+                        choice = (short) ((Math.random() * 13) + 1);
                         OK = isGood(choice,doneYet);
                         doneYet[choice - 1] = true;
                         boardsArray[count] = choice;
@@ -186,7 +183,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }while (!SmartGood);
         // ORDERING THE ARRAY
-        //for(int count2 = 1; count2 <= 13; count2++){if(contains(boardsArray,count2)){order[counter]=count2;counter++;}}
+        //for(short count2 = 1; count2 <= 13; count2++){if(contains(boardsArray,count2)){order[counter]=count2;counter++;}}
         boardsS = display(boardsArray);
         boardText.setText(boardsS);
         randomize ocl312 = new randomize();
@@ -196,17 +193,17 @@ public class MainActivity extends AppCompatActivity {
     }
     private void randomExtras(){
          extratext = (TextView) findViewById(R.id.extraView);
-        int RandomPick;
-        int RRCount = 0;
+        short RandomPick;
+        short RRCount = 0;
         boolean good = false;
         boolean[] extras = new boolean[6];
-        for(int hello = 0; hello < extras.length; hello++){extras[hello] = false;}
+        for(short hello = 0; hello < extras.length; hello++){extras[hello] = false;}
         boolean[] readyDid = new boolean[7];
-        for(int hello = 0; hello < readyDid.length; hello++){readyDid[hello] = false;}
-        for(int count = 0; count < extraCount; count++)
+        for(short hello = 0; hello < readyDid.length; hello++){readyDid[hello] = false;}
+        for(short count = 0; count < extraCount; count++)
         {
             do {
-                RandomPick = (int) ((Math.random()*6));
+                RandomPick = (short) ((Math.random()*6));
                 if(RandomPick==0&&(!readyDid[0])&&(getVar("TBEV")&&prefArray[13]))// RR
                 {
                     if(MTORRV){RRCount++;good=true;}
@@ -233,7 +230,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
-    private boolean isSmart(int[] boardsArray, int rounds) {
+    private boolean isSmart(short[] boardsArray, short rounds) {
         boolean[] SmartArray = new boolean[4];
         boolean[] SmartArray2 = new boolean[4];
         SmartArray[0] = ((prefArray[0] || prefArray[1] || prefArray[2]) && (rounds >= 1));
@@ -241,16 +238,16 @@ public class MainActivity extends AppCompatActivity {
         SmartArray[2] = ((prefArray[7] || prefArray[8] || prefArray[9] || prefArray[10]) && ((rounds >= 3||!SmartArray[0])||(!SmartArray[1])&&rounds>=2));
         SmartArray[3] = ((prefArray[11] || prefArray[12]) && ((rounds >= 4||!SmartArray[0])||(!SmartArray[1]&&rounds>=3)||(!SmartArray[2]&&rounds>=3)));
 
-        SmartArray2[0] = !SmartArray[0] || (contains(boardsArray, 1) || contains(boardsArray, 2) || contains(boardsArray, 3));
-        SmartArray2[1] = !SmartArray[1] || (contains(boardsArray, 4) || contains(boardsArray, 5) || contains(boardsArray, 6)
-                || contains(boardsArray, 7));
-        SmartArray2[2] = !SmartArray[2] || (contains(boardsArray, 8) || contains(boardsArray, 9) || contains(boardsArray, 10)
-                || contains(boardsArray, 11));
-        SmartArray2[3] = !SmartArray[3] || (contains(boardsArray, 12) || contains(boardsArray, 13));
+        SmartArray2[0] = !SmartArray[0] || (contains(boardsArray, (short) 1) || contains(boardsArray, (short)2) || contains(boardsArray, (short)3));
+        SmartArray2[1] = !SmartArray[1] || (contains(boardsArray, (short)4) || contains(boardsArray, (short)5) || contains(boardsArray,(short) 6)
+                || contains(boardsArray, (short)7));
+        SmartArray2[2] = !SmartArray[2] || (contains(boardsArray, (short)8) || contains(boardsArray, (short)9) || contains(boardsArray, (short)10)
+                || contains(boardsArray, (short)11));
+        SmartArray2[3] = !SmartArray[3] || (contains(boardsArray,(short) 12) || contains(boardsArray, (short)13));
 
         return (SmartArray2[0] && SmartArray2[1] && SmartArray2[2] && SmartArray2[3]);
     }
-    private boolean isGood(int choice, boolean[] doneYet){
+    private boolean isGood(short choice, boolean[] doneYet){
         boolean OK;
         if ((choice == 1) && (!doneYet[0]) && getVar("BSV")&& prefArray[0]){OK = true;}       // I      BS
         else if ((choice == 2) && (!doneYet[1]) && getVar("ABEV")&& prefArray[1]){OK = true;} // I A    BIG
@@ -271,13 +268,13 @@ public class MainActivity extends AppCompatActivity {
 
     //    TOOLS
     private boolean[] loadArray(boolean[] toLoad, boolean TF){
-        for(int i = 0; i < toLoad.length; i++)
+        for(short i = 0; i < toLoad.length; i++)
         {
             toLoad[i] = TF;
         }
         return toLoad;
     }
-    private void makeToast(String toDisply, int Length){
+    private void makeToast(String toDisply, short Length){
         if(Length == 0)
         {
             Toast toast = Toast.makeText(getApplicationContext(), toDisply, Toast.LENGTH_SHORT);
@@ -291,9 +288,9 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
-    private boolean contains(int[] boardsArray2, int numToFind){
+    private boolean contains(short[] boardsArray2, short numToFind){
         boolean out = false;
-        int count = 1;
+        short count = 1;
         do {
             if(boardsArray2[count-1] == numToFind){out = true;}
             count++;
@@ -370,26 +367,26 @@ public class MainActivity extends AppCompatActivity {
             prefArray[18] = false;
         }
     }
-    private String display(int[] boardsArray){
+    private String display(short[] boardsArray){
         String boardsS ="";
         try {
-            if(contains(boardsArray,1)){boardsS += "I\n";}
-            if(contains(boardsArray,2)){boardsS += "I A\n";}
-            if(contains(boardsArray,3)){boardsS += "I C\n";}
-            if(contains(boardsArray,4)){boardsS += "II\n";}
-            if(contains(boardsArray,5)){boardsS += "II A\n";}
-            if(contains(boardsArray,6)){boardsS += "II B\n";}
-            if(contains(boardsArray,7)){boardsS += "II C\n";}
-            if(contains(boardsArray,8)){boardsS += "III \n";}
-            if(contains(boardsArray,9)){boardsS += "III A\n";}
-            if(contains(boardsArray,10)){boardsS += "III B\n";}
-            if(contains(boardsArray,11)){boardsS += "III C\n";}
-            if(contains(boardsArray,12)){boardsS += "IV \n";}
-            if(contains(boardsArray,13)){boardsS += "IV C\n";}
+            if(contains(boardsArray,(short)1)){boardsS += "I\n";}
+            if(contains(boardsArray,(short)2)){boardsS += "I A\n";}
+            if(contains(boardsArray,(short)3)){boardsS += "I C\n";}
+            if(contains(boardsArray,(short)4)){boardsS += "II\n";}
+            if(contains(boardsArray,(short)5)){boardsS += "II A\n";}
+            if(contains(boardsArray,(short)6)){boardsS += "II B\n";}
+            if(contains(boardsArray,(short)7)){boardsS += "II C\n";}
+            if(contains(boardsArray,(short)8)){boardsS += "III \n";}
+            if(contains(boardsArray,(short)9)){boardsS += "III A\n";}
+            if(contains(boardsArray,(short)10)){boardsS += "III B\n";}
+            if(contains(boardsArray,(short)11)){boardsS += "III C\n";}
+            if(contains(boardsArray,(short)12)){boardsS += "IV \n";}
+            if(contains(boardsArray,(short)13)){boardsS += "IV C\n";}
 
         } catch (Exception e) {
             String out = e.toString();
-            makeToast(out,1);
+            makeToast(out,(short)1);
         }
         return boardsS;
     }
@@ -412,8 +409,8 @@ public class MainActivity extends AppCompatActivity {
         else if(Name.equalsIgnoreCase("MV")){return MV;}
         return false;
     }
-    private int decreaseRounds(boolean[] prefArray2){
-        int amountReturn = 0;
+    private short decreaseRounds(boolean[] prefArray2){
+        short amountReturn = 0;
         if(!prefArray2[0]&&BSV){amountReturn+=1;}   // I
         if(!prefArray2[1]&&TBEV){amountReturn+=1;}  // IA
         if(!prefArray2[2]&&LMV){amountReturn+=1;}   // IC
@@ -429,8 +426,8 @@ public class MainActivity extends AppCompatActivity {
         if(!prefArray2[12]&&LMV){amountReturn+=1;}  // IVC
         return amountReturn;
     }
-    private int decreaseExtras(boolean[] prefArray2){
-        int amountReturn = 0;
+    private short decreaseExtras(boolean[] prefArray2){
+        short amountReturn = 0;
         if (!prefArray2[13]&&TBEV){amountReturn+=1;if(MTORRV){amountReturn+=9;}}
         if (!prefArray2[14]&&TBEV){amountReturn+=1;}
         if (!prefArray2[15]&&TBEV){amountReturn+=1;}
@@ -813,7 +810,7 @@ public class MainActivity extends AppCompatActivity {
                 TextView roundsText = (TextView)  findViewById(R.id.roundsText);
                 String print =  "Rounds: "+rounds.getProgress();
                 roundsText.setText(print);
-                numOfRounds = rounds.getProgress();
+                numOfRounds = (short) rounds.getProgress();
                 SharedPreferences preferences = getApplicationContext().getSharedPreferences("Trucker", android.content.Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = preferences.edit();
                 editor.putInt("rounds",numOfRounds);
@@ -824,7 +821,7 @@ public class MainActivity extends AppCompatActivity {
                 TextView extraText = (TextView) findViewById(R.id.extrastext);
                 String print = "Extras: "+extras.getProgress();
                 extraText.setText(print);
-                extraCount = extras.getProgress();
+                extraCount = (short)extras.getProgress();
                 SharedPreferences preferences = getApplicationContext().getSharedPreferences("Trucker", android.content.Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = preferences.edit();
                 editor.putInt("extras",extraCount);
@@ -898,7 +895,7 @@ public class MainActivity extends AppCompatActivity {
                 else
                 {
                     I.setChecked(false);
-                    makeToast("You need the Base Set to play Board I", 0);
+                    makeToast("You need the Base Set to play Board I", (short)0);
                 }
                 break;
             case R.id.BOARDIA:
@@ -909,7 +906,7 @@ public class MainActivity extends AppCompatActivity {
                 else
                 {
                     IA.setChecked(false);
-                    makeToast("You need the Big Expansion to play Board IA", 0);
+                    makeToast("You need the Big Expansion to play Board IA", (short)0);
                 }
                 break;
             case R.id.BOARDIC:
@@ -920,7 +917,7 @@ public class MainActivity extends AppCompatActivity {
                 else
                 {
                     IC.setChecked(false);
-                    makeToast("You need the Latest Models Expansion to play Board IC", 0);
+                    makeToast("You need the Latest Models Expansion to play Board IC", (short)0);
                 }
                 break;
             case R.id.BOARDII:
@@ -931,7 +928,7 @@ public class MainActivity extends AppCompatActivity {
                 else
                 {
                     II.setChecked(false);
-                    makeToast("You need the Base Set to play Board II", 0);
+                    makeToast("You need the Base Set to play Board II", (short)0);
                 }
                 break;
             case R.id.BOARDIIA:
@@ -942,7 +939,7 @@ public class MainActivity extends AppCompatActivity {
                 else
                 {
                     IIA.setChecked(false);
-                    makeToast("You need the Big Expansion to play Board IIA", 0);
+                    makeToast("You need the Big Expansion to play Board IIA", (short)0);
                 }
                 break;
             case R.id.BOARDIIB:
@@ -953,7 +950,7 @@ public class MainActivity extends AppCompatActivity {
                 else
                 {
                     IIB.setChecked(false);
-                    makeToast("You need the Another Big Expansion to play Board IIB", 0);
+                    makeToast("You need the Another Big Expansion to play Board IIB", (short)0);
                 }
                 break;
             case R.id.BOARDIIC:
@@ -964,7 +961,7 @@ public class MainActivity extends AppCompatActivity {
                 else
                 {
                     IIC.setChecked(false);
-                    makeToast("You need the Latest Models Expansion to play Board IIC", 0);
+                    makeToast("You need the Latest Models Expansion to play Board IIC", (short)0);
                 }
                 break;
             case R.id.BOARDIII:
@@ -975,7 +972,7 @@ public class MainActivity extends AppCompatActivity {
                 else
                 {
                     III.setChecked(false);
-                    makeToast("You need the Base Set to play Board III", 0);
+                    makeToast("You need the Base Set to play Board III", (short)0);
                 }
                 break;
             case R.id.BOARDIIIA:
@@ -986,7 +983,7 @@ public class MainActivity extends AppCompatActivity {
                 else
                 {
                     IIIA.setChecked(false);
-                    makeToast("You need the Base Set to play Board IIIA", 0);
+                    makeToast("You need the Base Set to play Board IIIA", (short)0);
                 }
                 break;
             case R.id.BOARDIIIB:
@@ -997,7 +994,7 @@ public class MainActivity extends AppCompatActivity {
                 else
                 {
                     IIIB.setChecked(false);
-                    makeToast("You need the Another Big Expansion to play Board IIIB", 0);
+                    makeToast("You need the Another Big Expansion to play Board IIIB",(short) 0);
                 }
                 break;
             case R.id.BOARDIIIC:
@@ -1008,7 +1005,7 @@ public class MainActivity extends AppCompatActivity {
                 else
                 {
                     IIIC.setChecked(false);
-                    makeToast("You need the Latest Models Expansion to play Board IIIC", 0);
+                    makeToast("You need the Latest Models Expansion to play Board IIIC",(short) 0);
                 }
                 break;
             case R.id.BOARDIV:
@@ -1019,7 +1016,7 @@ public class MainActivity extends AppCompatActivity {
                 else
                 {
                     IV.setChecked(false);
-                    makeToast("You need the Another Big Expansion to play Board IV", 0);
+                    makeToast("You need the Another Big Expansion to play Board IV",(short) 0);
                 }
                 break;
             case R.id.BOARDIVC:
@@ -1030,7 +1027,7 @@ public class MainActivity extends AppCompatActivity {
                 else
                 {
                     IVC.setChecked(false);
-                    makeToast("You need the Latest Models Expansion to play Board IVC", 0);
+                    makeToast("You need the Latest Models Expansion to play Board IVC",(short) 0);
                 }
                 break;
             case R.id.RRP:
@@ -1041,7 +1038,7 @@ public class MainActivity extends AppCompatActivity {
                 else
                 {
                     RRP.setChecked(false);
-                    makeToast("You need the Big Expansion to play with Rough Roads", 0);
+                    makeToast("You need the Big Expansion to play with Rough Roads",(short) 0);
                 }
                 break;
             case R.id.EMP:
@@ -1052,7 +1049,7 @@ public class MainActivity extends AppCompatActivity {
                 else
                 {
                     EMP.setChecked(false);
-                    makeToast("You need the Big Expansion to play with Evil Machinations", 0);
+                    makeToast("You need the Big Expansion to play with Evil Machinations", (short)0);
                 }
                 break;
             case R.id.TBEP:
@@ -1063,7 +1060,7 @@ public class MainActivity extends AppCompatActivity {
                 else
                 {
                     TPET.setChecked(false);
-                    makeToast("You need the Big Expansion to play with the Big Expansion tiles and cards", 0);
+                    makeToast("You need the Big Expansion to play with the Big Expansion tiles and cards",(short) 0);
                 }
                 break;
             case R.id.ABEP:
@@ -1074,7 +1071,7 @@ public class MainActivity extends AppCompatActivity {
                 else
                 {
                     APET.setChecked(false);
-                    makeToast("You need the Another Big Expansion with the Another Big Expansion tiles and cards", 0);
+                    makeToast("You need the Another Big Expansion with the Another Big Expansion tiles and cards", (short)0);
                 }
                 break;
             case R.id.STP:
@@ -1085,7 +1082,7 @@ public class MainActivity extends AppCompatActivity {
                 else
                 {
                     SCP.setChecked(false);
-                    makeToast("You need the Another Big Expansion to play with the Support Team", 0);
+                    makeToast("You need the Another Big Expansion to play with the Support Team",(short) 0);
                 }
                 break;
             case R.id.MP:
@@ -1096,7 +1093,7 @@ public class MainActivity extends AppCompatActivity {
                 else
                 {
                     MP.setChecked(false);
-                    makeToast("You need the Missions Expansion to play with Missions", 0);
+                    makeToast("You need the Missions Expansion to play with Missions",(short) 0);
                 }
                 break;
 
