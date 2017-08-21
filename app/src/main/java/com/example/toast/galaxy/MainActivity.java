@@ -46,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
     public static short numOfRounds = 0;
     public static short extraCount = 0;
     public static short numOfExtras = 0;
+    public static short bob = 1;
 
     //     Stings
     public static String view = "";
@@ -153,9 +154,15 @@ public class MainActivity extends AppCompatActivity {
         short[] boardsArray = new short[numOfRounds];
         boolean[] doneYet = new boolean[15];
         String boardsS;
+        long loopCount = 0;
 
         //   Program
         do {
+            loopCount++;
+            if(loopCount >= 10000){
+                System.out.println("BIG LOOP: "+loopCount);
+                bob = (short) 0;
+            }
             for (short hello = 0; hello < boardsArray.length; hello++){boardsArray[hello] = 0;}
             for (short hello = 0; hello < doneYet.length; hello++) {doneYet[hello] = false;}
             if (!ABEV && !LMV && (numOfRounds == 1)) {
@@ -174,7 +181,7 @@ public class MainActivity extends AppCompatActivity {
                     } while (!OK);
                 }
 
-                 if (Smart) {
+                 if (Smart&&bob ==1) {
                      rounds = numOfRounds;
                      if (rounds > 4){rounds = 4;}
                      if (!getVar("LMV")) {if (!getVar("ABEV")){rounds = 3;}}
@@ -184,10 +191,13 @@ public class MainActivity extends AppCompatActivity {
         }while (!SmartGood);
         // ORDERING THE ARRAY
         //for(short count2 = 1; count2 <= 13; count2++){if(contains(boardsArray,count2)){order[counter]=count2;counter++;}}
-        boardsS = display(boardsArray);
-        boardText.setText(boardsS);
-        randomize ocl312 = new randomize();
-        reRandom.setOnClickListener(ocl312);
+        if(bob ==1 ){
+            boardsS = display(boardsArray);
+            boardText.setText(boardsS);
+            randomize ocl312 = new randomize();
+            reRandom.setOnClickListener(ocl312);
+        }
+
 
 
     }
@@ -794,7 +804,14 @@ public class MainActivity extends AppCompatActivity {
                 toast.show();
             }else{
                 randomBoards();
-                randomExtras();
+                if(bob == 0){
+                    bob =1;
+                    makeToast("Sorry. An error wants a little attention. Please try another Round/Preference combination",(short)1);
+                    main();
+                }else{
+                    randomExtras();
+                }
+
             }
 
         }
