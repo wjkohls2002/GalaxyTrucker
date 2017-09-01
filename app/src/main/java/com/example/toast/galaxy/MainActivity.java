@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
     public static short extraCount = 0;
     public static short numOfExtras = 0;
     public static short bob = 1;
+    public static short errorCount = 0;
 
     //     Stings
     public static String view = "";
@@ -806,10 +807,23 @@ public class MainActivity extends AppCompatActivity {
                 randomBoards();
                 if(bob == 0){
                     bob =1;
-                    makeToast("Sorry. An error wants a little attention. Please try another Round/Preference combination",(short)1);
+                    errorCount ++;
+                    String Message = "Sorry. An error wants a little attention. Please try another Round/Preference combination";
+                    if(errorCount == 1){
+                        makeToast(Message,(short)1);
+                    }else if (errorCount == 2){
+                        makeToast("I said: "+Message,(short)1);
+                    }else if(errorCount == 3){
+                        makeToast("I SAID: "+Message, (short)1);
+                    }else if(errorCount == 4){
+                        makeToast("ARE YOU LISTENING AT ALL???  PICK ANOTHER ROUND/PREFERENCE COMBINATION.", (short)1);
+                    }else{
+                        makeToast("STOP DOING THIS COMBINATION!!!",(short)1);
+                    }
                     main();
                 }else{
                     randomExtras();
+                    errorCount =0;
                 }
 
             }
