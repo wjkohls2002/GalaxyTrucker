@@ -15,20 +15,12 @@ public class Splash extends Activity {
 
         Thread background = new Thread() {
             public void run() {
+                Intent i = new Intent(Splash.this, MainActivity.class);
+                try{sleep(1500);}catch (InterruptedException ignore){}
+                Splash.this.finish();
+                Splash.this.startActivity(i);
 
-                try {
-                    ProgressBar loady = (ProgressBar) findViewById(R.id.loady);
-                    for(int i = 0; i<=100;i++)
-                    {
-                        sleep(20);loady.setProgress(i);
-                    }
-                    Intent i = new Intent(getBaseContext(), MainActivity.class);
-                    startActivity(i);
-                    finish();
 
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
             }
         };
 
