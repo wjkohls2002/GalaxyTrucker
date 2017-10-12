@@ -1,13 +1,21 @@
 apply plugin: 'com.android.application'
 
 android {
+    signingConfigs {
+        config {
+            keyAlias 'FishTankApps'
+            keyPassword 'MyN3wP@ssw0rd'
+            storeFile file('C:/Users/TOAST/AndroidStudioProjects/Galaxy/app/build/outputs/apk/app-release-unsigned.apk')
+            storePassword 'MyN3wP@ssw0rd'
+        }
+    }
     compileSdkVersion 25
     buildToolsVersion "25.0.3"
     defaultConfig {
-        applicationId "com.example.toast.galaxy"
+        applicationId "com.FTA.toast.galaxy"
         minSdkVersion 12
         targetSdkVersion 25
-        versionCode 1
+        versionCode 2
         versionName "1.0.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
@@ -15,6 +23,17 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    productFlavors {
+        free {
+            applicationId "com.FTA.toast.galaxy"
+            minSdkVersion 12
+            targetSdkVersion 25
+            versionCode 2
+            versionName "1.0.0"
+            testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+            signingConfig signingConfigs.config
         }
     }
 }

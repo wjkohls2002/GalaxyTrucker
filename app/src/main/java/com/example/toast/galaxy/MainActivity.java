@@ -13,6 +13,8 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.toast.galaxy.R;
+
 public class MainActivity extends AppCompatActivity {
 
 //-----{ DECLARATIONS}----------------------------------------------------------------------------

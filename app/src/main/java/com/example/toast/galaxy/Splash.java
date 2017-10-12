@@ -2,11 +2,10 @@ package com.example.toast.galaxy;
 
 
 import android.os.Bundle;
-import android.app.Activity;
 import android.content.Intent;
-import android.widget.ProgressBar;
+import android.support.v7.app.AppCompatActivity;
 
-public class Splash extends Activity {
+public class Splash extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -15,7 +14,7 @@ public class Splash extends Activity {
 
         Thread background = new Thread() {
             public void run() {
-                Intent i = new Intent(Splash.this, MainActivity.class);
+                Intent i = new Intent(Splash.this, com.example.toast.galaxy.MainActivity.class);
                 try{sleep(1500);}catch (InterruptedException ignore){}
                 Splash.this.finish();
                 Splash.this.startActivity(i);

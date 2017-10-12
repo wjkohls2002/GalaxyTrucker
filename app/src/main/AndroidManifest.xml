@@ -8,7 +8,7 @@
 
         android:allowBackup="true"
         android:icon="@mipmap/icong"
-        android:label="Galaxy Trucker Randomizer"
+        android:label="Randomizer for Galaxy Trucker"
         android:roundIcon="@mipmap/icong"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar"
@@ -16,7 +16,7 @@
         android:background="#000">
 
         <activity
-            android:name=".Splash"
+            android:name="com.example.toast.galaxy.Splash"
             android:theme="@style/Theme.AppCompat.NoActionBar"
             android:screenOrientation="portrait">
             <intent-filter>
